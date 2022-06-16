@@ -131,7 +131,7 @@
       
       <guid>https://wild-coffee.github.io/blog/post/windows-%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4/</guid>
       <description>Windows查看某进程占用端口情况，或查看某端口被哪个进程占用
-netstat -ano|findstr &amp;#34;:8080&amp;#34; # 通过端口号，找到占用进程 ID，假设端口号为 8080tasklist -V|findstr &amp;#34;10296&amp;#34; # 找到进程 PID 后，找到对应的 exe 文件，假设 PID 为 10296taskkill /PID 10296 -T -F # 杀死该进程，-F 强制，-S 同时杀死子进程 Windows 10 看发行的版本
+# 通过端口号，找到占用进程 ID，假设端口号为 8080netstat -ano|findstr &amp;#34;:8080&amp;#34;# 找到进程 PID 后，找到对应的 exe 文件，假设 PID 为 10296tasklist -V|findstr &amp;#34;10296&amp;#34;# 杀死该进程，-F 强制，-S 同时杀死子进程taskkill /PID 10296 -T -F Windows 10 看发行的版本
 开始 -&amp;gt; 设置(齿轮图标) -&amp;gt; 系统 -&amp;gt; 关于</description>
     </item>
     
