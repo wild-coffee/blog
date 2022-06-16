@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Minimal</title>
+    <title>Wild-coffee</title>
     <link>https://wild-coffee.github.io/blog/</link>
-    <description>Recent content on Minimal</description>
+    <description>Recent content on Wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jun 2022 12:23:20 +0800</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About</title>
-      <link>https://wild-coffee.github.io/blog/about/about/</link>
-      <pubDate>Thu, 16 Jun 2022 12:23:20 +0800</pubDate>
-      
-      <guid>https://wild-coffee.github.io/blog/about/about/</guid>
-      <description>About 我是 wild-coffee，定居四川成都！
-这里记录我的一些开发笔记以及生活日记之类的，欢迎来到这里！
-我的技术栈比较杂，爱折腾，最近喜欢折腾 flutter 及 pytorch 机器学习！
-联系邮箱：liang.chenglong@qq.com</description>
-    </item>
-    
+    <language>en-us</language><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
