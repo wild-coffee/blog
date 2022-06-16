@@ -12,9 +12,8 @@ body {
 
 main {
     margin: auto;
-    /* padding: 25px; */
     flex: 1 0 auto;
-    min-width: 768px;
+    min-width: 950px;
 }
 
 img {
