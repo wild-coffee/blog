@@ -13,7 +13,7 @@ body {
 main {
     margin: auto;
     flex: 1 0 auto;
-    min-width: 950px;
+    min-width: 60%;
 }
 
 img {
@@ -39,7 +39,8 @@ img {
 /* Page content */
 
 .content {
-    padding-top: 20px;
+    padding-top: 0px;
+    font-size: medium;
 }
 
 /* Profile picture */
