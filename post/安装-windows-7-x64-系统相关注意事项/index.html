@@ -141,7 +141,53 @@
 
     </div>
 
-    <div align="start" class="content"></div>
+    <div align="start" class="content"><ol>
+<li>
+<p>BIOS 设置</p>
+<p>打开 Launch CSM</p>
+<p>关闭 Secure BOOT</p>
+</li>
+<li>
+<p>U盘工具制作</p>
+<p>UltraISO 软件</p>
+<ul>
+<li>格式化为 FAT32</li>
+<li>USB-HDD+ 模式</li>
+<li>菜单 -&gt; 启动 -&gt; 写入硬盘映像</li>
+</ul>
+<p>Window 7 64 位 ISO 文件</p>
+<ul>
+<li>下载地址为 <a href="https://msdn.itellyou.cn/">https://msdn.itellyou.cn/</a></li>
+</ul>
+<p>给制作的启动 U 盘文件添加 BootX64.efi 特殊文件</p>
+<ul>
+<li>BootX64.efi 来源：安装了 Win8/10系统的 C:\Windows\Boot\EFI\bootmgfw.efi</li>
+<li>在制作的启动 U 盘的 EFI 根目录下面，新建 Boot 文件夹，把 bootmgfw.efi 复制到该文件夹，并重命名为：BootX64.efi</li>
+</ul>
+</li>
+<li>
+<p>常见问题汇总</p>
+<ul>
+<li>
+<p>Invalid signature detected</p>
+<p>BIOS 设置中 Secure BOOT 未关闭</p>
+</li>
+<li>
+<p>一直停留在 Windows 正在启动界面</p>
+<p>BIOS 设置中 Launch CSM   未打开</p>
+</li>
+<li>
+<p>BIOS 启动选项中没有 U 盘启动的选项</p>
+<p>U盘工具制作中，未给启动 U 盘添加特殊文件</p>
+</li>
+<li>
+<p>电脑开机过程中 BIOS 一闪而过，无法进入 BIOS 设置界面</p>
+<p>一般由 Win8/10 降级到 Win7 产生问题，需要关闭快速启动：电源选项 -&gt; 选择电源按钮功能 -&gt; 更改当前不可用设置 -&gt; 关闭启用快速启动</p>
+</li>
+</ul>
+</li>
+</ol>
+</div>
 
     
     

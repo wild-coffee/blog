@@ -43,6 +43,11 @@ img {
     font-size: medium;
 }
 
+.content a {
+    color: #005a9e !important;
+    text-decoration: underline !important;
+}
+
 /* Profile picture */
 
 .profile {

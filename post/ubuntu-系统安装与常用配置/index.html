@@ -5,7 +5,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>我的 Visual Studio 2013 开发环境配置</title>
+        <title>Ubuntu 系统安装与常用配置</title>
         
             <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
         
@@ -87,7 +87,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">我的 Visual Studio 2013 开发环境配置</a>
+                    <a class="navbar-brand visible-xs" href="#">Ubuntu 系统安装与常用配置</a>
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -135,7 +135,7 @@
 <main>
 
     <div>
-        <h2>我的 Visual Studio 2013 开发环境配置</h2>
+        <h2>Ubuntu 系统安装与常用配置</h2>
         <h5>June 16, 2022</h5>
         
 
@@ -143,50 +143,37 @@
 
     <div align="start" class="content"><ol>
 <li>
-<p>Tab 设置</p>
-<p>Tools -&gt; Options -&gt; Text Editor -&gt; C# -&gt; Tabs</p>
-<ul>
-<li>选择：Smart</li>
-<li>选择：Keep tabs</li>
-<li>Tab size 输入：4</li>
-<li>Indent size 输入：4</li>
-</ul>
+<p>安装</p>
+<p>在 bios 中先启用 UEFI（disabled CMS ）</p>
 </li>
 <li>
-<p>黑色主题</p>
-<p>Tools -&gt; Options -&gt; Environment -&gt; General -&gt; Color theme</p>
+<p>分区</p>
+<p>以 1TB 磁盘为例</p>
+<p>EFI 分区，如果不显示，则需要在 BIOS 中启用 UEFI，建议 4GB，Logical, Beginning of this space</p>
+<p>SWAP 分区，建议大小为内存的 2 倍，Primary, Beginning of this space</p>
+<p>挂载点 / ，存放 ubuntu 系统文件，建议 128GB，Logical, Beginning of this space</p>
+<p>挂载点 /urs，存放用户自定义程序，建议 128GB，Logical, Beginning of this space</p>
+<p>挂载点 /home，用户目录，余下所有空间，Logical, Beginning of this space</p>
 </li>
 <li>
-<p>行号显示</p>
-<p>Tools -&gt; Options -&gt; Text Editor -&gt; All Language：Line numbers</p>
+<p>安装好了以后，在软件设置里把 SourceList 源设置为 aliyun，启动 Software&amp;Updates 进行更新升级</p>
 </li>
 <li>
-<p>智能空格设置</p>
-<p>Tools -&gt; Options -&gt; Text Editor -&gt; C# -&gt; Formatting -&gt; Spacing</p>
-<p>关闭：Insert space after keywords in control flow statements（if 后面的空格）</p>
+<p>安装拼音输入法</p>
+<p><code>sudo apt-get install fcitx-googlepinyin</code></p>
+<p>打开 Language Support 程序，设置 Keyboard input method system: &ldquo;fcitx&rdquo;</p>
+<p>屏幕右上角，单击 google pinyin -&gt; Configure，添加 google pinyin 输入法</p>
+<p>google pinyin 切换快捷键为 <code>ctrl + space</code>，中英切换快捷键为 <code>shift</code></p>
 </li>
 <li>
-<p>安装常用的插件</p>
-<ul>
-<li>Productivity Power Tools 2013（安装）</li>
-<li>NuGet Package Manager for Visual Studio 2013（升级）</li>
-</ul>
-</li>
+<p>使用 snap 命令安装软件时，提示 <em>cannot install &ldquo;&mdash;&rdquo;: snap &ldquo;&mdash;&rdquo; has &ldquo;install-snap&rdquo; change in progress</em></p>
+<p>此问题原因是安装的软件已经启动了一个安装，还在进行中，未成功，需要手动结束</p>
+<pre tabindex="0"><code>snap changes            # 找到正在安装的 ID
+sudo snap abort ID
+</code></pre></li>
 <li>
-<p>环境和文本编辑器配置字体（等宽）</p>
-<p>工具 -&gt; 选项 -&gt; 环境 -&gt; 字体和颜色</p>
-<ul>
-<li>环境：Lucida Console</li>
-<li>文本编辑器：Consolas</li>
-</ul>
-</li>
-<li>
-<p>安装英语语言包</p>
-<p>在 <a href="https://my.visualstudio.com/Downloads/Featured?mkt=zh-cn">微软订阅下载中心：https://my.visualstudio.com/Downloads/Featured?mkt=zh-cn</a> 搜索 <strong>Visual Studio 2013 Language Pack</strong> 下载语言包</p>
-<p>安装时，先关闭所有已打开的 Visual studio 软件</p>
-<p>然后在控制台执行命令：<code>{exe file path}\*.exe /Uninstall</code>，选择 <strong>Repair</strong></p>
-<p>最后在 Visual studio 中切换语言</p>
-<p>Tools -&gt; Options -&gt; Environment -&gt; International Settings -&gt; Language：English</p>
+<p>ubuntu 安装 dotnet 开发环境</p>
+<p><a href="https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-snap">https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-snap</a></p>
 </li>
 </ol>
 </div>
