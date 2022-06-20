@@ -6,7 +6,19 @@
     <description>Recent content in Posts on wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Jun 2022 18:06:59 +0800</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dio 无法用 Fiddler 抓包问题</title>
+      <link>https://wild-coffee.github.io/blog/post/dio-%E6%97%A0%E6%B3%95%E7%94%A8-fiddler-%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 20 Jun 2022 18:06:59 +0800</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/dio-%E6%97%A0%E6%B3%95%E7%94%A8-fiddler-%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98/</guid>
+      <description>Dio 默认内部使用 HttpClient 进行网络请求，默认不会使用系统配置的代理
+可通过在 onHttpClientCreate 中配置 findProxy 来使用代理访问
+同时，通过配置 badCertificateCallback 忽略 HTTPS 证书问题
+(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) { client.findProxy = (url) { return HttpClient.findProxyFromEnvironment(url, environment: { &amp;#34;http_proxy&amp;#34;: &amp;#34;127.0.0.1:8888&amp;#34;, &amp;#34;https_proxy&amp;#34;: &amp;#34;127.0.0.1:8888&amp;#34; }); }; client.badCertificateCallback = (X509Certificate cert, String host, int port) { return true; }; return client; }; </description>
+    </item>
+    
     <item>
       <title>使用 UglifyJS 对 Javascript 文件进行压缩</title>
       <link>https://wild-coffee.github.io/blog/post/%E4%BD%BF%E7%94%A8-uglifyjs-%E5%AF%B9-javascript-%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9/</link>
