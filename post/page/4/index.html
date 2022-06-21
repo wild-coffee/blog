@@ -5,7 +5,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>使用 UglifyJS 对 Javascript 文件进行压缩</title>
+        <title>Posts</title>
         
             <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
         
@@ -70,6 +70,9 @@
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
  <meta name="generator" content="Hugo 0.100.2" />
         
+            <link href="/blog/post/index.xml" rel="alternate" type="application/rss&#43;xml" title="wild-coffee" />
+            <link href="/blog/post/index.xml" rel="feed" type="application/rss&#43;xml" title="wild-coffee" />
+        
 
         
 
@@ -87,7 +90,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">使用 UglifyJS 对 Javascript 文件进行压缩</a>
+                    <a class="navbar-brand visible-xs" href="#">Posts</a>
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -134,41 +137,9 @@
 
 <main>
 
-    <div>
-        <h2>使用 UglifyJS 对 Javascript 文件进行压缩</h2>
-        <h5>June 17, 2022</h5>
-        
+    <h2>Posts</h2>
 
-    </div>
-
-    <div align="start" class="content"><hr>
-<h3 id="安装">安装</h3>
-<pre tabindex="0"><code>npm install uglify-js -g            # 全局安装
-npm install uglify-js@3.6.7 -g      # 可以安装指定版本的包
-uglifyjs -V                         # 检查是否安装成功
-</code></pre><h3 id="es-问题">ES 问题</h3>
-<p>如果项目中用到了 ES 6.0 语法，uglify-js 会报错；这时需要安装 uglify-es 替换掉 uglify-js，安装方式同 uglify-js</p>
-<p>eg.错误： Unexpected token: name «slnCache», expected: punc «;»</p>
-<pre tabindex="0"><code>npm install uglify-es -g
-uglifyjs -V                         # 将显示：uglify-es 3.3.9
-</code></pre><h3 id="配置使用-msdeploy-方式发布网站时不更新-webconfig-文件">配置使用 MSDeploy 方式发布网站时，不更新 web.config 文件</h3>
-<p>Publish 文件: Publish.pubxml 中，在标签 <!-- raw HTML omitted --> 中增加以下</p>
-<pre tabindex="0"><code>&lt;ExcludeFilesFromDeployment&gt;Web.config&lt;/ExcludeFilesFromDeployment&gt;
-</code></pre><h3 id="配置-visual-studio-在-publish-网站时自动压缩">配置 Visual Studio 在 Publish 网站时自动压缩。</h3>
-<p>该方法仅仅适用于：MSDeploy 方式发布网站，不支持 File System</p>
-<p>Publish文件: Publish.pubxml 中，在标签 <code>&lt;PropertyGroup&gt;</code> 中增加以下</p>
-<pre tabindex="0"><code>&lt;AfterAddIisSettingAndFileContentsToSourceManifest&gt;ReleaseTask&lt;/AfterAddIisSettingAndFileContentsToSourceManifest&gt;
-</code></pre><p>Publish文件: Publish.pubxml 中，在标签 <code>&lt;Project&gt;</code> 中增加以下</p>
-<pre tabindex="0"><code>&lt;Target Name=&#34;ReleaseTask&#34; Condition=&#34;&#39;$(ConfigurationName)&#39;==&#39;Release&#39;&#34;&gt;
-    &lt;!--复制文件--&gt;
-    &lt;Exec Command=&#34;Copy /V /B Plugins\*.dll   obj\$(ConfigurationName)\Plugins\&#34;&gt;&lt;/Exec&gt;
-    
-    &lt;!--压缩JS文件--&gt;
-    &lt;Exec Command=&#34;uglifyjs obj\$(ConfigurationName)\Package\PackageTmp\Content\js\cache.js   -m -o obj\$(ConfigurationName)\Package\PackageTmp\Content\js\cache.js&#34;&gt;&lt;/Exec&gt;
-    &lt;Exec Command=&#34;uglifyjs obj\$(ConfigurationName)\Package\PackageTmp\Content\js\queue.js   -m -o obj\$(ConfigurationName)\Package\PackageTmp\Content\js\queue.js&#34;&gt;&lt;/Exec&gt;
-    &lt;Exec Command=&#34;uglifyjs obj\$(ConfigurationName)\Package\PackageTmp\Content\js\config.js  -m -o obj\$(ConfigurationName)\Package\PackageTmp\Content\js\config.js&#34;&gt;&lt;/Exec&gt;
-&lt;/Target&gt;
-</code></pre></div>
+     <div class="item">
 
     
     
@@ -176,8 +147,32 @@ uglifyjs -V                         # 将显示：uglify-es 3.3.9
 
     
     
+
+    <h4><a href="/blog/post/%E6%88%91%E7%9A%84-visual-studio-2013-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">我的 Visual Studio 2013 开发环境配置</a></h4>
+    <h5>June 16, 2022</h5>
+    
+
+
+</div>
+ 
 
 </main>
+
+
+
+<div class="pages">
+
+    
+        <a class="icon pages-icon" href="/blog/post/page/3/" rel="prev">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+    
+
+    
+
+</div>
+
+
 
         <footer>
             <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>

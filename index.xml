@@ -49,7 +49,10 @@ show_channel_urls: truechannels:- http://mirrors.tuna.tsinghua.edu.cn/anaconda
       <guid>https://wild-coffee.github.io/blog/post/%E9%A2%84%E8%A7%88%E6%89%80%E6%9C%89-materialapp-icon/</guid>
       <description> Flutter 采用 MaterialApp 风格时，内置了很多图标，且这些图标访问使用类静态成员直接访问（Icons.perm_identity），使用十分方便
 但是，由于使用 visual studio code 开发时，没有预览所有图标的功能，查找图标十分麻烦，可在下面地址中预览图标：
-官方预览地址 https://fonts.google.com/icons?selected=Material+Icons https://material.io/tools/icons/?style=baseline https://materialdesignicons.com/ 其它地址 https://www.cnblogs.com/ckAng/p/10751545.html </description>
+官方预览地址 https://fonts.google.com/icons?selected=Material+Icons
+https://material.io/tools/icons/?style=baseline
+https://materialdesignicons.com/
+其它地址 https://www.cnblogs.com/ckAng/p/10751545.html </description>
     </item>
     
     <item>
@@ -58,7 +61,7 @@ show_channel_urls: truechannels:- http://mirrors.tuna.tsinghua.edu.cn/anaconda
       <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/post/flutter-%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</guid>
-      <description>Flutter 是 Google 开源的应用开发框架，仅通过一套代码库，就能构建精美的、原生平台编译的多平台应用。官方网站:https://flutter.cn/
+      <description>Flutter 是 Google 开源的应用开发框架，仅通过一套代码库，就能构建精美的、原生平台编译的多平台应用。官方网站：https://flutter.cn/
 安装及环境变量配置 最新的安装方法以开发文档为准：https://flutter.cn/docs/get-started/install/windows
 下载最新的 SDK ：https://flutter.cn/docs/get-started/install，下载后，把解压得到的 flutter 目录复制到用户目录（C:\Users\Alan\flutter）
 配置环境 Path 指定 SDK 路径
@@ -97,6 +100,25 @@ API （version 2.0.9）介绍：
     </item>
     
     <item>
+      <title>Flutter 插件之 Pigeon - 与宿主平台通信</title>
+      <link>https://wild-coffee.github.io/blog/post/flutter-%E6%8F%92%E4%BB%B6%E4%B9%8B-pigeon-%E4%B8%8E%E5%AE%BF%E4%B8%BB%E5%B9%B3%E5%8F%B0%E9%80%9A%E4%BF%A1/</link>
+      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/flutter-%E6%8F%92%E4%BB%B6%E4%B9%8B-pigeon-%E4%B8%8E%E5%AE%BF%E4%B8%BB%E5%B9%B3%E5%8F%B0%E9%80%9A%E4%BF%A1/</guid>
+      <description>Pigeon is a code generator tool to make communication between Flutter and the host platform type-safe, easier and faster.
+Pigeon 是一个代码生成工具，让 Flutter 与宿主平台更简单、更快捷且类型安全地通信。非常类似于：Protocol Buffer
+Pigeon 支持在 iOS 平台生成 Object-C 代码，在 Android 平台生成 Java 代码
+插件地址：https://pub.flutter-io.cn/packages/pigeon
+仓库地址：https://github.com/flutter/packages/tree/master/packages/pigeon/pigeons
+示例地址：https://github.com/gaaclarke/pigeon_plugin_example
+API （1.0.18）介绍：
+创建插件工程，并安装 Pigeon flutter create --template=plugin --platforms=android,ios -i swift -a kotlin day08_pigeon 通过 plugin 模板创建的项目中：
+有一个 example 文件夹，里面可以添加插件使用示例代码，方便测试插件
+在 pubspec.yaml 文件中，指定了各个平台真实实现的类名信息
+flutter:plugin:platforms:android:package: com.example.day08_pigeonpluginClass: Day08PigeonPluginios:pluginClass: Day08PigeonPlugin 因为 Pigeon 是一个代码生成工具，并不需要运行时支持，所以只需要在 dev_dependencies 中添加</description>
+    </item>
+    
+    <item>
       <title>使用 FVM 管理多个版本的 Flutter</title>
       <link>https://wild-coffee.github.io/blog/post/%E4%BD%BF%E7%94%A8-fvm-%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84-flutter/</link>
       <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
@@ -117,14 +139,11 @@ choco -vchoco upgrade chocolatey 安装 FVM choco install fvmfvm --version 使
       <pubDate>Fri, 17 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/post/%E4%BD%BF%E7%94%A8-uglifyjs-%E5%AF%B9-javascript-%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9/</guid>
-      <description>安装 全局安装
-npm install uglify-js -gnpm install uglify-js@3.6.7 -g # 可以安装指定版本的包uglifyjs -V # 检查是否安装成功 ES 问题
-如果项目中用到了 ES 6.0 语法，uglify-js 会报错；这时需要安装 uglify-es 替换掉 uglify-js，安装方式同 uglify-js
+      <description>安装 npm install uglify-js -g # 全局安装npm install uglify-js@3.6.7 -g # 可以安装指定版本的包uglifyjs -V # 检查是否安装成功 ES 问题 如果项目中用到了 ES 6.0 语法，uglify-js 会报错；这时需要安装 uglify-es 替换掉 uglify-js，安装方式同 uglify-js
 eg.错误： Unexpected token: name «slnCache», expected: punc «;»
-npm install uglify-es -guglifyjs -V # 将显示：uglify-es 3.3.9 配置使用 MSDeploy 方式发布网站时，不更新 web.config 文件 Publish文件: Publish.pubxml 中，在标签 中增加以下
+npm install uglify-es -guglifyjs -V # 将显示：uglify-es 3.3.9 配置使用 MSDeploy 方式发布网站时，不更新 web.config 文件 Publish 文件: Publish.pubxml 中，在标签 中增加以下
 &amp;lt;ExcludeFilesFromDeployment&amp;gt;Web.config&amp;lt;/ExcludeFilesFromDeployment&amp;gt; 配置 Visual Studio 在 Publish 网站时自动压缩。 该方法仅仅适用于：MSDeploy 方式发布网站，不支持 File System
-Publish文件: Publish.pubxml 中，在标签 中增加以下
-&amp;lt;AfterAddIisSettingAndFileContentsToSourceManifest&amp;gt;ReleaseTask&amp;lt;/AfterAddIisSettingAndFileContentsToSourceManifest&amp;gt; Publish文件: Publish.</description>
+Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中增加以下</description>
     </item>
     
     <item>
@@ -186,6 +205,7 @@ Publish文件: Publish.pubxml 中，在标签 中增加以下
       
       <guid>https://wild-coffee.github.io/blog/dart/</guid>
       <description>[2022-06-21] Dio 无法用 Fiddler 抓包问题
+[2022-06-20] Flutter 插件之 Pigeon - 与宿主平台通信
 [2022-06-20] Flutter 插件之 Path_provider - 获取常用目录位置
 [2022-06-20] Flutter 插件之 Flutter_tts - 合成声音
 [2022-06-20] 预览所有 MaterialApp Icon
