@@ -5,7 +5,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Posts</title>
+        <title>Flutter 插件之 Path_provider - 获取常用目录位置</title>
         
             <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
         
@@ -70,9 +70,6 @@
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
  <meta name="generator" content="Hugo 0.100.2" />
         
-            <link href="/blog/post/index.xml" rel="alternate" type="application/rss&#43;xml" title="wild-coffee" />
-            <link href="/blog/post/index.xml" rel="feed" type="application/rss&#43;xml" title="wild-coffee" />
-        
 
         
 
@@ -90,7 +87,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">Posts</a>
+                    <a class="navbar-brand visible-xs" href="#">Flutter 插件之 Path_provider - 获取常用目录位置</a>
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -137,39 +134,27 @@
 
 <main>
 
-    <h2>Posts</h2>
+    <div>
+        <h2>Flutter 插件之 Path_provider - 获取常用目录位置</h2>
+        <h5>June 20, 2022</h5>
+        
 
-     <div class="item">
+    </div>
 
-    
-    
-    
+    <div align="start" class="content"><hr>
+<p>path_provider 提供了一种平台透明的方式，来访问设备文件系统上的常用位置的插件，全平台支持的位置包含临时目录和软件数据目录等</p>
+<p>插件地址：<a href="https://pub.flutter-io.cn/packages/path_provider">https://pub.flutter-io.cn/packages/path_provider</a></p>
+<p>API （version 2.0.9）介绍：</p>
+<pre tabindex="0"><code># 获取应用程序数据目录
+# Android - getDataDirectory
+# iOS - NSDocumentDirectory
+Future&lt;Directory&gt; getApplicationDocumentsDirectory() async
 
-    
-    
-
-    <h4><a href="/blog/post/anaconda-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">Anaconda 安装与使用</a></h4>
-    <h5>June 21, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
-
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/dio-%E6%97%A0%E6%B3%95%E7%94%A8-fiddler-%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98/">Dio 无法用 Fiddler 抓包问题</a></h4>
-    <h5>June 21, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
+# 获取临时目录
+# Android - getCacheDir
+# iOS - NSCachesDirectory
+Future&lt;Directory&gt; getTemporaryDirectory() async
+</code></pre></div>
 
     
     
@@ -177,62 +162,8 @@
 
     
     
-
-    <h4><a href="/blog/post/%E9%A2%84%E8%A7%88%E6%89%80%E6%9C%89-materialapp-icon/">预览所有 MaterialApp Icon</a></h4>
-    <h5>June 21, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
-
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/flutter-%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Flutter 安装及环境配置</a></h4>
-    <h5>June 20, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
-
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/flutter-%E6%8F%92%E4%BB%B6%E4%B9%8B-flutter_tts-%E5%90%88%E6%88%90%E5%A3%B0%E9%9F%B3/">Flutter 插件之 Flutter_tts - 合成声音</a></h4>
-    <h5>June 20, 2022</h5>
-    
-
-
-</div>
- 
 
 </main>
-
-
-
-<div class="pages">
-
-    
-
-    
-        <a class="icon pages-icon" href="/blog/post/page/2/" rel="next">
-            <i class="fa fa-arrow-right"></i>
-        </a>
-    
-
-</div>
-
-
 
         <footer>
             <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>

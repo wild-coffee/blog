@@ -30,6 +30,18 @@ show_channel_urls: truechannels:- http://mirrors.tuna.tsinghua.edu.cn/anaconda
     </item>
     
     <item>
+      <title>Dio 无法用 Fiddler 抓包问题</title>
+      <link>https://wild-coffee.github.io/blog/post/dio-%E6%97%A0%E6%B3%95%E7%94%A8-fiddler-%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 21 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/dio-%E6%97%A0%E6%B3%95%E7%94%A8-fiddler-%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98/</guid>
+      <description> Dio 默认内部使用 HttpClient 进行网络请求，默认不会使用系统配置的代理，而 Fiddler 通过配置系统代理抓包分析，所以 Fiddler 无法抓到 Dio 的网络请求包。
+通过在 onHttpClientCreate 中配置 findProxy 来配置 Dio 使用代理来访问网络。
+同时，通过配置 badCertificateCallback 忽略 HTTPS 证书问题。
+(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) { client.findProxy = (url) { return HttpClient.findProxyFromEnvironment(url, environment: { &amp;#34;http_proxy&amp;#34;: &amp;#34;127.0.0.1:8888&amp;#34;, &amp;#34;https_proxy&amp;#34;: &amp;#34;127.0.0.1:8888&amp;#34; }); }; client.badCertificateCallback = (X509Certificate cert, String host, int port) { return true; }; return client; }; </description>
+    </item>
+    
+    <item>
       <title>预览所有 MaterialApp Icon</title>
       <link>https://wild-coffee.github.io/blog/post/%E9%A2%84%E8%A7%88%E6%89%80%E6%9C%89-materialapp-icon/</link>
       <pubDate>Tue, 21 Jun 2022 00:00:00 +0000</pubDate>
@@ -38,18 +50,6 @@ show_channel_urls: truechannels:- http://mirrors.tuna.tsinghua.edu.cn/anaconda
       <description> Flutter 采用 MaterialApp 风格时，内置了很多图标，且这些图标访问使用类静态成员直接访问（Icons.perm_identity），使用十分方便
 但是，由于使用 visual studio code 开发时，没有预览所有图标的功能，查找图标十分麻烦，可在下面地址中预览图标：
 官方预览地址 https://fonts.google.com/icons?selected=Material+Icons https://material.io/tools/icons/?style=baseline https://materialdesignicons.com/ 其它地址 https://www.cnblogs.com/ckAng/p/10751545.html </description>
-    </item>
-    
-    <item>
-      <title>Dio 无法用 Fiddler 抓包问题</title>
-      <link>https://wild-coffee.github.io/blog/post/dio-%E6%97%A0%E6%B3%95%E7%94%A8-fiddler-%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98/</link>
-      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://wild-coffee.github.io/blog/post/dio-%E6%97%A0%E6%B3%95%E7%94%A8-fiddler-%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98/</guid>
-      <description> Dio 默认内部使用 HttpClient 进行网络请求，默认不会使用系统配置的代理，而 Fiddler 通过配置系统代理抓包分析，所以 Fiddler 无法抓到 Dio 的网络请求包。
-通过在 onHttpClientCreate 中配置 findProxy 来配置 Dio 使用代理来访问网络。
-同时，通过配置 badCertificateCallback 忽略 HTTPS 证书问题。
-(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) { client.findProxy = (url) { return HttpClient.findProxyFromEnvironment(url, environment: { &amp;#34;http_proxy&amp;#34;: &amp;#34;127.0.0.1:8888&amp;#34;, &amp;#34;https_proxy&amp;#34;: &amp;#34;127.0.0.1:8888&amp;#34; }); }; client.badCertificateCallback = (X509Certificate cert, String host, int port) { return true; }; return client; }; </description>
     </item>
     
     <item>
@@ -70,6 +70,30 @@ PUB_HOSTED_URL=https://pub.flutter-io.cnFLUTTER_STORAGE_BASE_URL=https://storag
 错误 2：cmdline-tools component is missing
 则需要在 Android studio 中安装：SDK Manager-&amp;gt;SDK Tools-&amp;gt;Android SDK Command-line Tools(latest)
 安装完成后执行：flutter doctor --android-licenses</description>
+    </item>
+    
+    <item>
+      <title>Flutter 插件之 Flutter_tts - 合成声音</title>
+      <link>https://wild-coffee.github.io/blog/post/flutter-%E6%8F%92%E4%BB%B6%E4%B9%8B-flutter_tts-%E5%90%88%E6%88%90%E5%A3%B0%E9%9F%B3/</link>
+      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/flutter-%E6%8F%92%E4%BB%B6%E4%B9%8B-flutter_tts-%E5%90%88%E6%88%90%E5%A3%B0%E9%9F%B3/</guid>
+      <description> flutter_tts 是一个将文字转换为合成声音的插件，支持多语言及播放控制等
+插件地址：https://pub.flutter-io.cn/packages/flutter_tts
+API （version 3.3.3）介绍：
+FlutterTts() # 构造Future&amp;lt;dynamic&amp;gt; isLanguageAvailable(String language) async # 是否支持某种语言Future&amp;lt;dynamic&amp;gt; get getLanguages async # 支持的语言列表Future&amp;lt;dynamic&amp;gt; setLanguage(String language) async # 设置合成语言Future&amp;lt;dynamic&amp;gt; setSpeechRate(double rate) async # 速率Future&amp;lt;dynamic&amp;gt; setVolume(double volume) async # 音量Future&amp;lt;dynamic&amp;gt; setPitch(double pitch) async # 音调Future&amp;lt;dynamic&amp;gt; awaitSpeakCompletion(bool awaitCompletion) async # 等待声音播放完成Future&amp;lt;dynamic&amp;gt; speak(String text) async # 播放声音Future&amp;lt;dynamic&amp;gt; pause() async # 暂停（iOS|Web）Future&amp;lt;dynamic&amp;gt; stop() async # 停止 </description>
+    </item>
+    
+    <item>
+      <title>Flutter 插件之 Path_provider - 获取常用目录位置</title>
+      <link>https://wild-coffee.github.io/blog/post/flutter-%E6%8F%92%E4%BB%B6%E4%B9%8B-path_provider-%E8%8E%B7%E5%8F%96%E5%B8%B8%E7%94%A8%E7%9B%AE%E5%BD%95%E4%BD%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/flutter-%E6%8F%92%E4%BB%B6%E4%B9%8B-path_provider-%E8%8E%B7%E5%8F%96%E5%B8%B8%E7%94%A8%E7%9B%AE%E5%BD%95%E4%BD%8D%E7%BD%AE/</guid>
+      <description> path_provider 提供了一种平台透明的方式，来访问设备文件系统上的常用位置的插件，全平台支持的位置包含临时目录和软件数据目录等
+插件地址：https://pub.flutter-io.cn/packages/path_provider
+API （version 2.0.9）介绍：
+# 获取应用程序数据目录# Android - getDataDirectory# iOS - NSDocumentDirectoryFuture&amp;lt;Directory&amp;gt; getApplicationDocumentsDirectory() async# 获取临时目录# Android - getCacheDir# iOS - NSCachesDirectoryFuture&amp;lt;Directory&amp;gt; getTemporaryDirectory() async </description>
     </item>
     
     <item>
