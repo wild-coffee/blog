@@ -6,7 +6,29 @@
     <description>Recent content on wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Jun 2022 18:06:59 +0800</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Anaconda 安装与使用</title>
+      <link>https://wild-coffee.github.io/blog/post/anaconda_%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 21 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/anaconda_%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description>Anaconda 官网介绍为 The World&amp;rsquo;s Most Popular Data Science Platform，一个数据科学计算平台，但对我来说她是一个 Python 包管理器和环境管理器。
+假设电脑上需要运行多种 Python 环境，每个环境的 Python 版本不一样，所依赖的包的版本可能也不一样，安装多个版本的 Python 会导致管理的混乱，尤其是删除时，十分的麻烦。
+Anaconda 可以完美地解决这个问题。
+她通过创建多个虚拟环境，来隔离各个运行环境，每个虚拟空间拥有自己的 Python 版本及依赖包，结合空间创建、切换、删除等命令，方便地进行运行环境搭建。
+Anaconda 安装、配置、升级和卸载 Anaconda 官网地址：https://www.anaconda.com/
+阿里云下载地址：https://mirrors.aliyun.com/anaconda/
+清华源下载地址：https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/
+下载对应版本 .sh 文件，通过 bash 命令运行安装： bash Anaconda3-5.3.1-Linux-x86_64.sh
+安装完成后运行：conda --version，验证是否成功
+conda 安装后，启动命令行，默认就会进入 base 环境，可通过以下方式开关该特性
+conda config --set auto_activate_base false
+配置镜像源 设置 conda 阿里云镜像（ubuntu）
+修改 home 目录下的 .condarc 文件
+show_channel_urls: truechannels:- http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main- http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free- http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r- http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro- http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2 设置 conda 清华镜像源</description>
+    </item>
+    
     <item>
       <title>Dio 无法用 Fiddler 抓包问题</title>
       <link>https://wild-coffee.github.io/blog/post/dio-%E6%97%A0%E6%B3%95%E7%94%A8-fiddler-%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98/</link>
@@ -53,7 +75,7 @@ Publish文件: Publish.pubxml 中，在标签 中增加以下
       <pubDate>Thu, 16 Jun 2022 16:51:18 +0800</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/python/</guid>
-      <description></description>
+      <description> [2022-06-21] Anaconda 安装与使用 </description>
     </item>
     
     <item>
