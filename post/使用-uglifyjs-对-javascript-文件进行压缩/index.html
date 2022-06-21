@@ -141,9 +141,8 @@
 
     </div>
 
-    <div align="start" class="content"><ol>
-<li>
-<p>安装</p>
+    <div align="start" class="content"><hr>
+<h3 id="安装">安装</h3>
 <ul>
 <li>
 <p>全局安装</p>
@@ -152,24 +151,22 @@ npm install uglify-js@3.6.7 -g      # 可以安装指定版本的包
 uglifyjs -V                         # 检查是否安装成功
 </code></pre></li>
 <li>
+<p>ES 问题</p>
 <p>如果项目中用到了 ES 6.0 语法，uglify-js 会报错；这时需要安装 uglify-es 替换掉 uglify-js，安装方式同 uglify-js</p>
 <p>eg.错误： Unexpected token: name «slnCache», expected: punc «;»</p>
 <pre tabindex="0"><code>npm install uglify-es -g
 uglifyjs -V                         # 将显示：uglify-es 3.3.9
 </code></pre></li>
 </ul>
-</li>
-<li>
-<p>使用 MSDeploy 方式发布网站，不更新 web.config 文件</p>
+<h3 id="配置使用-msdeploy-方式发布网站时不更新-webconfig-文件">配置使用 MSDeploy 方式发布网站时，不更新 web.config 文件</h3>
 <ul>
 <li>
 <p>Publish文件: Publish.pubxml 中，在标签 <!-- raw HTML omitted --> 中增加以下</p>
 <pre tabindex="0"><code>&lt;ExcludeFilesFromDeployment&gt;Web.config&lt;/ExcludeFilesFromDeployment&gt;
 </code></pre></li>
 </ul>
-</li>
-<li>
-<p>配置 Visual Studio 在 Publish 网站时自动压缩。该方法仅仅适用于：MSDeploy 方式发布网站，不支持 File System</p>
+<h3 id="配置-visual-studio-在-publish-网站时自动压缩">配置 Visual Studio 在 Publish 网站时自动压缩。</h3>
+<p>该方法仅仅适用于：MSDeploy 方式发布网站，不支持 File System</p>
 <ul>
 <li>
 <p>Publish文件: Publish.pubxml 中，在标签 <!-- raw HTML omitted --> 中增加以下</p>
@@ -188,8 +185,6 @@ uglifyjs -V                         # 将显示：uglify-es 3.3.9
 &lt;/Target&gt;
 </code></pre></li>
 </ul>
-</li>
-</ol>
 </div>
 
     

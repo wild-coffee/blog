@@ -35,8 +35,7 @@ show_channel_urls: truechannels:- http://mirrors.tuna.tsinghua.edu.cn/anaconda
       <pubDate>Mon, 20 Jun 2022 18:06:59 +0800</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/post/dio-%E6%97%A0%E6%B3%95%E7%94%A8-fiddler-%E6%8A%93%E5%8C%85%E9%97%AE%E9%A2%98/</guid>
-      <description>Dio 默认内部使用 HttpClient 进行网络请求，默认不会使用系统配置的代理
-可通过在 onHttpClientCreate 中配置 findProxy 来使用代理访问
+      <description> Dio 默认内部使用 HttpClient 进行网络请求，默认不会使用系统配置的代理，而 Fiddler 通过配置系统代理，当 HTTP 请求通过代理时，进行抓包分析，所以需要通过在 onHttpClientCreate 中配置 findProxy 来配置 Dio 使用代理来访问网络
 同时，通过配置 badCertificateCallback 忽略 HTTPS 证书问题
 (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) { client.findProxy = (url) { return HttpClient.findProxyFromEnvironment(url, environment: { &amp;#34;http_proxy&amp;#34;: &amp;#34;127.0.0.1:8888&amp;#34;, &amp;#34;https_proxy&amp;#34;: &amp;#34;127.0.0.1:8888&amp;#34; }); }; client.badCertificateCallback = (X509Certificate cert, String host, int port) { return true; }; return client; }; </description>
     </item>
@@ -47,15 +46,14 @@ show_channel_urls: truechannels:- http://mirrors.tuna.tsinghua.edu.cn/anaconda
       <pubDate>Fri, 17 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/post/%E4%BD%BF%E7%94%A8-uglifyjs-%E5%AF%B9-javascript-%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9/</guid>
-      <description>安装
-全局安装
-npm install uglify-js -gnpm install uglify-js@3.6.7 -g # 可以安装指定版本的包uglifyjs -V # 检查是否安装成功 如果项目中用到了 ES 6.0 语法，uglify-js 会报错；这时需要安装 uglify-es 替换掉 uglify-js，安装方式同 uglify-js
+      <description>安装 全局安装
+npm install uglify-js -gnpm install uglify-js@3.6.7 -g # 可以安装指定版本的包uglifyjs -V # 检查是否安装成功 ES 问题
+如果项目中用到了 ES 6.0 语法，uglify-js 会报错；这时需要安装 uglify-es 替换掉 uglify-js，安装方式同 uglify-js
 eg.错误： Unexpected token: name «slnCache», expected: punc «;»
-npm install uglify-es -guglifyjs -V # 将显示：uglify-es 3.3.9 使用 MSDeploy 方式发布网站，不更新 web.config 文件
+npm install uglify-es -guglifyjs -V # 将显示：uglify-es 3.3.9 配置使用 MSDeploy 方式发布网站时，不更新 web.config 文件 Publish文件: Publish.pubxml 中，在标签 中增加以下
+&amp;lt;ExcludeFilesFromDeployment&amp;gt;Web.config&amp;lt;/ExcludeFilesFromDeployment&amp;gt; 配置 Visual Studio 在 Publish 网站时自动压缩。 该方法仅仅适用于：MSDeploy 方式发布网站，不支持 File System
 Publish文件: Publish.pubxml 中，在标签 中增加以下
-&amp;lt;ExcludeFilesFromDeployment&amp;gt;Web.config&amp;lt;/ExcludeFilesFromDeployment&amp;gt; 配置 Visual Studio 在 Publish 网站时自动压缩。该方法仅仅适用于：MSDeploy 方式发布网站，不支持 File System
-Publish文件: Publish.pubxml 中，在标签 中增加以下
-&amp;lt;AfterAddIisSettingAndFileContentsToSourceManifest&amp;gt;ReleaseTask&amp;lt;/AfterAddIisSettingAndFileContentsToSourceManifest&amp;gt; Publish文件: Publish.pubxml 中，在标签 中增加以下</description>
+&amp;lt;AfterAddIisSettingAndFileContentsToSourceManifest&amp;gt;ReleaseTask&amp;lt;/AfterAddIisSettingAndFileContentsToSourceManifest&amp;gt; Publish文件: Publish.</description>
     </item>
     
     <item>
@@ -64,9 +62,7 @@ Publish文件: Publish.pubxml 中，在标签 中增加以下
       <pubDate>Fri, 17 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/post/%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</guid>
-      <description>Visual studio 2019
-调试模式下，快速回到当前代码行：Alt + * 查看定义：F12 查看所有引用：Shift + F12 查看所有实现：Ctrl + F12 退回：Ctrl + -（P 键上方的减键） 前进：Ctrl + Shift + -（P 键上方的减） 列选中模式：Alt + Shift + Up/Down 复制当前行并粘贴到下一行：Ctrl + D 剪切当前行：Shift + Delete 连续选中：Shift + Left/Right 连续快速选中：Ctrl + Shift + Left/Right 快速左右移动光标：Ctrl + Left/Right 行内容交换：Alt + Up/Down Visual studio code
-查看定义：F12 查看所有引用：Shift + F12 查看所有实现：Ctrl + F12 退回：Alt + Left 前进：Alt + Right 列选中模式：Alt + Shift + 鼠标左键选择范围 行内容交换：Alt + Up/Down 复制当前行并粘贴到下一行：Alt + Shift + Up/Down 命令：Ctrl + Shift + P 剪切当前行：Shift + Delete ubuntu</description>
+      <description>Visual studio 2019 调试模式下，快速回到当前代码行：Alt + * 查看定义：F12 查看所有引用：Shift + F12 查看所有实现：Ctrl + F12 退回：Ctrl + -（P 键上方的减键） 前进：Ctrl + Shift + -（P 键上方的减） 列选中模式：Alt + Shift + Up/Down 复制当前行并粘贴到下一行：Ctrl + D 剪切当前行：Shift + Delete 连续选中：Shift + Left/Right 连续快速选中：Ctrl + Shift + Left/Right 快速左右移动光标：Ctrl + Left/Right 行内容交换：Alt + Up/Down Visual studio code 查看定义：F12 查看所有引用：Shift + F12 查看所有实现：Ctrl + F12 退回：Alt + Left 前进：Alt + Right 列选中模式：Alt + Shift + 鼠标左键选择范围 行内容交换：Alt + Up/Down 复制当前行并粘贴到下一行：Alt + Shift + Up/Down 命令：Ctrl + Shift + P 剪切当前行：Shift + Delete Ubuntu 打开终端：ctrl + alt + T 终端全屏：F11 新建当前同路径的终端（新窗口）：ctrl + shift + N 再开一个当前同路径终端（新标签）：ctrl + shift + T 打开所有软件：supper + A Windows Adb 设置横竖屏</description>
     </item>
     
     <item>
@@ -84,7 +80,7 @@ Publish文件: Publish.pubxml 中，在标签 中增加以下
       <pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/post/tfs-%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4/</guid>
-      <description>Visual studio 里面多了一些名称格式为 D + GUID 的工程
+      <description>常见问题 Visual studio 里面多了一些名称格式为 D + GUID 的工程
 用 TF 工具删除(TF工具位置：C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE)
 执行：tf destroy $/&amp;lt;GUID，不能带最前面的D&amp;gt; /collection:https://dev.azure.com/&amp;lt;URL&amp;gt;</description>
     </item>
@@ -95,16 +91,14 @@ Publish文件: Publish.pubxml 中，在标签 中增加以下
       <pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/post/ubuntu-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</guid>
-      <description>安装
-在 bios 中先启用 UEFI（disabled CMS ）
-分区
-以 1TB 磁盘为例
+      <description>安装 在 bios 中先启用 UEFI（disabled CMS ）
+分区，以 1TB 磁盘为例
 EFI 分区，如果不显示，则需要在 BIOS 中启用 UEFI，建议 4GB，Logical, Beginning of this space
 SWAP 分区，建议大小为内存的 2 倍，Primary, Beginning of this space
 挂载点 / ，存放 ubuntu 系统文件，建议 128GB，Logical, Beginning of this space
 挂载点 /urs，存放用户自定义程序，建议 128GB，Logical, Beginning of this space
 挂载点 /home，用户目录，余下所有空间，Logical, Beginning of this space
-安装好了以后，在软件设置里把 SourceList 源设置为 aliyun，启动 Software&amp;amp;Updates 进行更新升级
+基础配置 在软件设置里把 SourceList 源设置为 aliyun，启动 Software&amp;amp;Updates 进行更新升级
 安装拼音输入法
 sudo apt-get install fcitx-googlepinyin
 打开 Language Support 程序，设置 Keyboard input method system: &amp;ldquo;fcitx&amp;rdquo;</description>
@@ -116,9 +110,7 @@ sudo apt-get install fcitx-googlepinyin
       <pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/post/windows-%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4/</guid>
-      <description>Windows查看某进程占用端口情况，或查看某端口被哪个进程占用
-netstat -ano|findstr &amp;#34;:8080&amp;#34; # 通过端口号，找到占用进程 ID，假设端口号为 8080tasklist -V|findstr &amp;#34;10296&amp;#34; # 找到进程 PID 后，找到对应的 exe 文件，假设 PID 为 10296taskkill /PID 10296 -T -F # 杀死该进程，-F 强制，-S 同时杀死子进程 Windows 10 看发行的版本
-开始 -&amp;gt; 设置(齿轮图标) -&amp;gt; 系统 -&amp;gt; 关于</description>
+      <description> Windows查看某进程占用端口情况，或查看某端口被哪个进程占用 ```netstat -ano|findstr &amp;quot;:8080&amp;quot; # 通过端口号，找到占用进程 ID，假设端口号为 8080tasklist -V|findstr &amp;quot;10296&amp;quot; # 找到进程 PID 后，找到对应的 exe 文件，假设 PID 为 10296taskkill /PID 10296 -T -F # 杀死该进程，-F 强制，-S 同时杀死子进程```Windows 10 看发行的版本 开始 -&amp;gt; 设置(齿轮图标) -&amp;gt; 系统 -&amp;gt; 关于</description>
     </item>
     
     <item>
@@ -127,15 +119,13 @@ netstat -ano|findstr &amp;#34;:8080&amp;#34; # 通过端口号，找到占用进
       <pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/post/%E5%AE%89%E8%A3%85-windows-7-x64-%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid>
-      <description>BIOS 设置
-打开 Launch CSM
+      <description>BIOS 设置 打开 Launch CSM
 关闭 Secure BOOT
-U盘工具制作
-UltraISO 软件
+U盘工具制作 UltraISO 软件
 格式化为 FAT32 USB-HDD+ 模式 菜单 -&amp;gt; 启动 -&amp;gt; 写入硬盘映像 Window 7 64 位 ISO 文件
-下载地址为 https://msdn.itellyou.cn/ 给制作的启动 U 盘文件添加 BootX64.efi 特殊文件
-BootX64.efi 来源：安装了 Win8/10系统的 C:\Windows\Boot\EFI\bootmgfw.efi 在制作的启动 U 盘的 EFI 根目录下面，新建 Boot 文件夹，把 bootmgfw.efi 复制到该文件夹，并重命名为：BootX64.efi 常见问题汇总
-Invalid signature detected
+下载地址为 https://msdn.itellyou.cn/
+给制作的启动 U 盘文件添加 BootX64.efi 特殊文件
+BootX64.efi 来源：安装了 Win8/10系统的 C:\Windows\Boot\EFI\bootmgfw.efi 在制作的启动 U 盘的 EFI 根目录下面，新建 Boot 文件夹，把 bootmgfw.efi 复制到该文件夹，并重命名为：BootX64.efi 常见问题汇总 Invalid signature detected
 BIOS 设置中 Secure BOOT 未关闭
 一直停留在 Windows 正在启动界面
 BIOS 设置中 Launch CSM 未打开
@@ -149,17 +139,12 @@ U盘工具制作中，未给启动 U 盘添加特殊文件</description>
       <pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/post/%E6%88%91%E7%9A%84-visual-studio-2013-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</guid>
-      <description>Tab 设置
-Tools -&amp;gt; Options -&amp;gt; Text Editor -&amp;gt; C# -&amp;gt; Tabs
-选择：Smart 选择：Keep tabs Tab size 输入：4 Indent size 输入：4 黑色主题
-Tools -&amp;gt; Options -&amp;gt; Environment -&amp;gt; General -&amp;gt; Color theme
-行号显示
-Tools -&amp;gt; Options -&amp;gt; Text Editor -&amp;gt; All Language：Line numbers
-智能空格设置
-Tools -&amp;gt; Options -&amp;gt; Text Editor -&amp;gt; C# -&amp;gt; Formatting -&amp;gt; Spacing
+      <description>Tab 设置 Tools -&amp;gt; Options -&amp;gt; Text Editor -&amp;gt; C# -&amp;gt; Tabs
+选择：Smart 选择：Keep tabs Tab size 输入：4 Indent size 输入：4 黑色主题 Tools -&amp;gt; Options -&amp;gt; Environment -&amp;gt; General -&amp;gt; Color theme
+行号显示 Tools -&amp;gt; Options -&amp;gt; Text Editor -&amp;gt; All Language：Line numbers
+智能空格设置 Tools -&amp;gt; Options -&amp;gt; Text Editor -&amp;gt; C# -&amp;gt; Formatting -&amp;gt; Spacing
 关闭：Insert space after keywords in control flow statements（if 后面的空格）
-安装常用的插件
-Productivity Power Tools 2013（安装） NuGet Package Manager for Visual Studio 2013（升级） 环境和文本编辑器配置字体（等宽）</description>
+安装常用的插件 Productivity Power Tools 2013（安装） NuGet Package Manager for Visual Studio 2013（升级） 环境和文本编辑器配置字体（等宽） 工具 -&amp;gt; 选项 -&amp;gt; 环境 -&amp;gt; 字体和颜色</description>
     </item>
     
   </channel>

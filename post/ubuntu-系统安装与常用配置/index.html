@@ -141,22 +141,31 @@
 
     </div>
 
-    <div align="start" class="content"><ol>
-<li>
-<p>安装</p>
+    <div align="start" class="content"><hr>
+<h3 id="安装">安装</h3>
 <p>在 bios 中先启用 UEFI（disabled CMS ）</p>
+<p>分区，以 1TB 磁盘为例</p>
+<ul>
+<li>
+<p><code>EFI</code> 分区，如果不显示，则需要在 BIOS 中启用 UEFI，建议 4GB，Logical, Beginning of this space</p>
 </li>
 <li>
-<p>分区</p>
-<p>以 1TB 磁盘为例</p>
-<p>EFI 分区，如果不显示，则需要在 BIOS 中启用 UEFI，建议 4GB，Logical, Beginning of this space</p>
-<p>SWAP 分区，建议大小为内存的 2 倍，Primary, Beginning of this space</p>
-<p>挂载点 / ，存放 ubuntu 系统文件，建议 128GB，Logical, Beginning of this space</p>
-<p>挂载点 /urs，存放用户自定义程序，建议 128GB，Logical, Beginning of this space</p>
-<p>挂载点 /home，用户目录，余下所有空间，Logical, Beginning of this space</p>
+<p><code>SWAP</code> 分区，建议大小为内存的 2 倍，Primary, Beginning of this space</p>
 </li>
 <li>
-<p>安装好了以后，在软件设置里把 SourceList 源设置为 aliyun，启动 Software&amp;Updates 进行更新升级</p>
+<p>挂载点 <code>/</code> ，存放 ubuntu 系统文件，建议 128GB，Logical, Beginning of this space</p>
+</li>
+<li>
+<p>挂载点 <code>/urs</code>，存放用户自定义程序，建议 128GB，Logical, Beginning of this space</p>
+</li>
+<li>
+<p>挂载点 <code>/home</code>，用户目录，余下所有空间，Logical, Beginning of this space</p>
+</li>
+</ul>
+<h3 id="基础配置">基础配置</h3>
+<ul>
+<li>
+<p>在软件设置里把 SourceList 源设置为 aliyun，启动 Software&amp;Updates 进行更新升级</p>
 </li>
 <li>
 <p>安装拼音输入法</p>
@@ -166,16 +175,19 @@
 <p>google pinyin 切换快捷键为 <code>ctrl + space</code>，中英切换快捷键为 <code>shift</code></p>
 </li>
 <li>
+<p>ubuntu 安装 dotnet 开发环境</p>
+<p><a href="https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-snap">https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-snap</a></p>
+</li>
+</ul>
+<h3 id="常见问题">常见问题</h3>
+<ul>
+<li>
 <p>使用 snap 命令安装软件时，提示 <em>cannot install &ldquo;&mdash;&rdquo;: snap &ldquo;&mdash;&rdquo; has &ldquo;install-snap&rdquo; change in progress</em></p>
 <p>此问题原因是安装的软件已经启动了一个安装，还在进行中，未成功，需要手动结束</p>
 <pre tabindex="0"><code>snap changes            # 找到正在安装的 ID
 sudo snap abort ID
 </code></pre></li>
-<li>
-<p>ubuntu 安装 dotnet 开发环境</p>
-<p><a href="https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-snap">https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-snap</a></p>
-</li>
-</ol>
+</ul>
 </div>
 
     
