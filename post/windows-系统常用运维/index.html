@@ -143,15 +143,11 @@
 
     <div align="start" class="content"><hr>
 <h3 id="windows查看某进程占用端口情况或查看某端口被哪个进程占用">Windows查看某进程占用端口情况，或查看某端口被哪个进程占用</h3>
-<pre><code>```
-netstat -ano|findstr &quot;:8080&quot;        # 通过端口号，找到占用进程 ID，假设端口号为 8080
-tasklist -V|findstr &quot;10296&quot;         # 找到进程 PID 后，找到对应的 exe 文件，假设 PID 为 10296
+<pre tabindex="0"><code>netstat -ano|findstr &#34;:8080&#34;        # 通过端口号，找到占用进程 ID，假设端口号为 8080
+tasklist -V|findstr &#34;10296&#34;         # 找到进程 PID 后，找到对应的 exe 文件，假设 PID 为 10296
 taskkill /PID 10296 -T -F           # 杀死该进程，-F 强制，-S 同时杀死子进程
-```
-</code></pre>
-<h3 id="windows-10-看发行的版本">Windows 10 看发行的版本</h3>
-<pre><code>开始 -&gt; 设置(齿轮图标) -&gt; 系统 -&gt; 关于
-</code></pre>
+</code></pre><h3 id="windows-10-看发行的版本">Windows 10 看发行的版本</h3>
+<p>开始 -&gt; 设置(齿轮图标) -&gt; 系统 -&gt; 关于</p>
 </div>
 
     

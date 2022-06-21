@@ -142,8 +142,9 @@
     </div>
 
     <div align="start" class="content"><hr>
-<p>Dio 默认内部使用 HttpClient 进行网络请求，默认不会使用系统配置的代理，而 Fiddler 通过配置系统代理，当 HTTP 请求通过代理时，进行抓包分析，所以需要通过在 <code>onHttpClientCreate</code> 中配置 <code>findProxy</code> 来配置 Dio 使用代理来访问网络</p>
-<p>同时，通过配置 <code>badCertificateCallback</code> 忽略 HTTPS 证书问题</p>
+<p>Dio 默认内部使用 HttpClient 进行网络请求，默认不会使用系统配置的代理，而 Fiddler 通过配置系统代理抓包分析，所以 Fiddler 无法抓到 Dio 的网络请求包。</p>
+<p>通过在 <code>onHttpClientCreate</code> 中配置 <code>findProxy</code> 来配置 Dio 使用代理来访问网络。</p>
+<p>同时，通过配置 <code>badCertificateCallback</code> 忽略 HTTPS 证书问题。</p>
 <pre tabindex="0"><code>(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) {
     client.findProxy = (url) {
         return HttpClient.findProxyFromEnvironment(url, environment: {
