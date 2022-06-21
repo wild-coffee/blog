@@ -56,6 +56,22 @@ https://materialdesignicons.com/
     </item>
     
     <item>
+      <title>Flutter 修改应用程序名字和图标</title>
+      <link>https://wild-coffee.github.io/blog/post/flutter-%E4%BF%AE%E6%94%B9%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%90%8D%E5%AD%97%E5%92%8C%E5%9B%BE%E6%A0%87/</link>
+      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/flutter-%E4%BF%AE%E6%94%B9%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%90%8D%E5%AD%97%E5%92%8C%E5%9B%BE%E6%A0%87/</guid>
+      <description>应用程序名字和图标，即安装后在手机桌面上显示的图标和名字。在 flutter 中，修改名字和图标并不是一个地方统一修改，而是各平台单独修改
+Android 名字：修改 android/app/src/main/AndroidManifest.xml，manifest &amp;gt; application &amp;gt; android:label
+图标：修改 android/app/src/main/AndroidManifest.xml，manifest &amp;gt; application &amp;gt; android:icon
+需提前添加图片到 android/app/src/main/res/mipmap-*dpi
+iOS 名字：修改 ios/Runner/Info.plist，CFBundleName
+图标：修改 ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json
+需提前添加图片到 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-x@*x.png
+实际开发中，更习惯于直接把 Android/iOS 中的文件直接替换，简单又直接！</description>
+    </item>
+    
+    <item>
       <title>Flutter 安装及环境配置</title>
       <link>https://wild-coffee.github.io/blog/post/flutter-%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
