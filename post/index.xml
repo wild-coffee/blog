@@ -6,7 +6,23 @@
     <description>Recent content in Posts on wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flutter 插件之 Webview_flutter - 浏览器</title>
+      <link>https://wild-coffee.github.io/blog/post/flutter-%E6%8F%92%E4%BB%B6%E4%B9%8B-webview_flutter-%E6%B5%8F%E8%A7%88%E5%99%A8/</link>
+      <pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/flutter-%E6%8F%92%E4%BB%B6%E4%B9%8B-webview_flutter-%E6%B5%8F%E8%A7%88%E5%99%A8/</guid>
+      <description>A Flutter plugin that provides a WebView widget.
+On iOS the WebView widget is backed by a WKWebView; On Android the WebView widget is backed by a WebView.
+WebView 是一个浏览器控件，支持 Android 和 iOS
+插件地址：https://pub.flutter-io.cn/packages/webview_flutter
+仓库地址：https://github.com/flutter/plugins/tree/main/packages/webview_flutter/webview_flutter
+API （3.0.4）介绍：
+WebView
+const WebView({Key? key,this.onWebViewCreated,this.initialUrl,this.initialCookies = const &amp;lt;WebViewCookie&amp;gt;[],this.javascriptMode = JavascriptMode.disabled,this.javascriptChannels,this.navigationDelegate,this.gestureRecognizers,this.onPageStarted,this.onPageFinished,this.onProgress,this.onWebResourceError,this.debuggingEnabled = false,this.gestureNavigationEnabled = false,this.userAgent,this.zoomEnabled = true,this.initialMediaPlaybackPolicy =AutoMediaPlaybackPolicy.</description>
+    </item>
+    
     <item>
       <title>Anaconda 安装与使用</title>
       <link>https://wild-coffee.github.io/blog/post/anaconda-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
