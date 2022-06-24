@@ -152,12 +152,8 @@
 <h3 id="创建插件工程并安装-pigeon">创建插件工程，并安装 Pigeon</h3>
 <pre tabindex="0"><code>flutter create --template=plugin --platforms=android,ios -i swift -a kotlin day08_pigeon
 </code></pre><p>通过 plugin 模板创建的项目中：</p>
-<ol>
-<li>
-<p>有一个 example 文件夹，里面可以添加插件使用示例代码，方便测试插件</p>
-</li>
-<li>
-<p>在 pubspec.yaml 文件中，指定了各个平台真实实现的类名信息</p>
+<p>1.有一个 example 文件夹，里面可以添加插件使用示例代码，方便测试插件</p>
+<p>2.在 pubspec.yaml 文件中，指定了各个平台真实实现的类名信息</p>
 <pre tabindex="0"><code>flutter:
 plugin:
     platforms:
@@ -166,9 +162,7 @@ plugin:
         pluginClass: Day08PigeonPlugin
     ios:
         pluginClass: Day08PigeonPlugin
-</code></pre></li>
-</ol>
-<p>因为 Pigeon 是一个代码生成工具，并不需要运行时支持，所以只需要在 dev_dependencies 中添加</p>
+</code></pre><p>因为 Pigeon 是一个代码生成工具，并不需要运行时支持，所以只需要在 dev_dependencies 中添加</p>
 <h3 id="添加协议">添加协议</h3>
 <p>在项目的根目录中添加 pigeons 目录，并在里面添加需要宿主平台支持的 API，命名为 messages.dart，该文件为通信协议文件</p>
 <p>这里参考示例，获取自定义宿主平台版本号为例：</p>

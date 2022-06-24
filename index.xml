@@ -145,8 +145,8 @@ Pigeon 支持在 iOS 平台生成 Object-C 代码，在 Android 平台生成 Jav
 示例地址：https://github.com/gaaclarke/pigeon_plugin_example
 API （1.0.18）介绍：
 创建插件工程，并安装 Pigeon flutter create --template=plugin --platforms=android,ios -i swift -a kotlin day08_pigeon 通过 plugin 模板创建的项目中：
-有一个 example 文件夹，里面可以添加插件使用示例代码，方便测试插件
-在 pubspec.yaml 文件中，指定了各个平台真实实现的类名信息
+1.有一个 example 文件夹，里面可以添加插件使用示例代码，方便测试插件
+2.在 pubspec.yaml 文件中，指定了各个平台真实实现的类名信息
 flutter:plugin:platforms:android:package: com.example.day08_pigeonpluginClass: Day08PigeonPluginios:pluginClass: Day08PigeonPlugin 因为 Pigeon 是一个代码生成工具，并不需要运行时支持，所以只需要在 dev_dependencies 中添加</description>
     </item>
     
