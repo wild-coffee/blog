@@ -160,8 +160,7 @@ flutter:plugin:platforms:android:package: com.example.day08_pigeonpluginCla
 在开发工具 Visual studio code 中配置：https://fvm.app/docs/getting_started/configuration#vs-code
 在源代码管理 GIT 中配置：https://fvm.app/docs/getting_started/configuration#project
 安装 choco 用管理员身份运行 cmd | Powershell
-@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;iex ((new-object net.webclient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&amp;quot; &amp;amp;&amp;amp; SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
-安装完成后，执行以下命令，检查安装及升级
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;#34;iex ((new-object net.webclient).DownloadString(&amp;#39;https://chocolatey.org/install.ps1&amp;#39;))&amp;#34; &amp;amp;&amp;amp; SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin 安装完成后，执行以下命令，检查安装及升级
 choco -vchoco upgrade chocolatey 安装 FVM choco install fvmfvm --version 使用 FVM 安装多个版本的 Flutter fvm releases # 查看可用的 flutter 版本fvm list # 查看已安装的版本fvm config # 查看 fvm 配置，包括缓存 flutter 仓库路径fvm config --cache-path &amp;lt;CACHE_PATH&amp;gt; # 设置缓存 flutter 仓库路径fvm install 2.</description>
     </item>
     
