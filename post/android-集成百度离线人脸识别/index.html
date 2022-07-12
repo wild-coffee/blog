@@ -5,7 +5,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Posts</title>
+        <title>Android 集成百度离线人脸识别</title>
         
             <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
         
@@ -70,9 +70,6 @@
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
  <meta name="generator" content="Hugo 0.100.2" />
         
-            <link href="/blog/post/index.xml" rel="alternate" type="application/rss&#43;xml" title="wild-coffee" />
-            <link href="/blog/post/index.xml" rel="feed" type="application/rss&#43;xml" title="wild-coffee" />
-        
 
         
 
@@ -90,7 +87,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">Posts</a>
+                    <a class="navbar-brand visible-xs" href="#">Android 集成百度离线人脸识别</a>
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -137,54 +134,45 @@
 
 <main>
 
-    <h2>Posts</h2>
+    <div>
+        <h2>Android 集成百度离线人脸识别</h2>
+        <h5>July 12, 2022</h5>
+        
 
-     <div class="item">
+    </div>
 
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/%E4%BD%BF%E7%94%A8-fvm-%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84-flutter/">使用 FVM 管理多个版本的 Flutter</a></h4>
-    <h5>June 20, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
-
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/%E4%BD%BF%E7%94%A8-uglifyjs-%E5%AF%B9-javascript-%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9/">使用 UglifyJS 对 Javascript 文件进行压缩</a></h4>
-    <h5>June 17, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
-
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/">快捷键与命令</a></h4>
-    <h5>June 17, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
+    <div align="start" class="content"><hr>
+<p>百度离线人脸识别，支持人脸采集、特诊提取、本地人脸库管理，同时支持离线激活、在线激活及批量激活，适合在无联网场景使用</p>
+<p>文档地址：<a href="https://ai.baidu.com/ai-doc/FACE/Yk37c1opz">https://ai.baidu.com/ai-doc/FACE/Yk37c1opz</a></p>
+<p>当前版本：8.0</p>
+<p>通过百度平台账户登录后，下载 Android-SDK(Baidu_Face_Offline_SDK_Android_8.0) 文件</p>
+<p>新建 Android 工程，添加 Module(FaceSDKAndroid\facelibrary)</p>
+<p>按理本文到此也该结束，但百度的 SDK 集成，着实踩了相当多的坑！</p>
+<h3 id="在通过-file---new---import-module-时报could-not-find-method-compile-for-arguments-directory-libs">在通过 File -&gt; New -&gt; Import Module 时，报：Could not find method compile() for arguments [directory &rsquo;libs']</h3>
+<p>因为 gradle 已经作废了 compile，用 api 替换;</p>
+<p>修改 <code>facelibrary\build.gradle</code> 中 <code>dependencies</code></p>
+<p>修改前</p>
+<pre tabindex="0"><code>compile fileTree(include: [&#39;*.jar&#39;], dir: &#39;libs&#39;)
+compile files(&#39;libs/orbbec_module-debug.aar&#39;)
+</code></pre><p>修改后</p>
+<pre tabindex="0"><code>api fileTree(include: [&#39;*.jar&#39;], dir: &#39;libs&#39;)
+compileOnly files(&#39;libs/orbbec_module-debug.aar&#39;)
+</code></pre><h3 id="能调试但编译时报direct-local-aar-file-dependencies-are-not-supported-when-building-an-aar">能调试，但编译时报：Direct local .aar file dependencies are not supported when building an AAR.</h3>
+<p>因为在新版的 Android studio 中，对 aar 包的引用方式有变化，这里不作探讨，解决方法参考上一条</p>
+<h3 id="编译时报duplicate-class-orgintellijlangannotationsxx-found-in-modules-xx-and-xx">编译时报：Duplicate class org.intellij.lang.annotations.xx found in modules xx and xx</h3>
+<p>因为 facelibrary 和 app 两个项目所依赖的 sdk 不一致，导致类重复定义，修改 faclibrary 中依赖的 sdk 同 app 一致即可</p>
+<p>修改 <code>facelibrary\build.gradle</code> 中 <code>dependencies</code></p>
+<p>修改前</p>
+<pre tabindex="0"><code>implementation &#39;org.jetbrains:annotations-java5:15.0&#39;
+</code></pre><p>修改后</p>
+<pre tabindex="0"><code>implementation &#34;&#34;org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version&#34;&#34;
+</code></pre><h3 id="编译时报execution-failed-for-task-appdexdebug">编译时报：Execution failed for task &lsquo;:app:dexDebug&rsquo;</h3>
+<p>这个问题最坑，解决方式也奇特，修改 facelibrary <code>AndroidManifest.xml</code> 中 package 即可</p>
+<p>修改前</p>
+<pre tabindex="0"><code>package=&#34;com.baidu.idl.main.facesdk&#34;
+</code></pre><p>修改后</p>
+<pre tabindex="0"><code>package=&#34;com.baidu.idl.main.facelibrary&#34;
+</code></pre></div>
 
     
     
@@ -192,51 +180,8 @@
 
     
     
-
-    <h4><a href="/blog/post/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">GIT 常用命令</a></h4>
-    <h5>June 16, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
-
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/tfs-%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4/">TFS 常用运维</a></h4>
-    <h5>June 16, 2022</h5>
-    
-
-
-</div>
- 
 
 </main>
-
-
-
-<div class="pages">
-
-    
-        <a class="icon pages-icon" href="/blog/post/page/2/" rel="prev">
-            <i class="fa fa-arrow-left"></i>
-        </a>
-    
-
-    
-        <a class="icon pages-icon" href="/blog/post/page/4/" rel="next">
-            <i class="fa fa-arrow-right"></i>
-        </a>
-    
-
-</div>
-
-
 
         <footer>
             <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>

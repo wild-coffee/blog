@@ -6,7 +6,26 @@
     <description>Recent content in Posts on wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android 集成百度离线人脸识别</title>
+      <link>https://wild-coffee.github.io/blog/post/android-%E9%9B%86%E6%88%90%E7%99%BE%E5%BA%A6%E7%A6%BB%E7%BA%BF%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/</link>
+      <pubDate>Tue, 12 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/android-%E9%9B%86%E6%88%90%E7%99%BE%E5%BA%A6%E7%A6%BB%E7%BA%BF%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/</guid>
+      <description>百度离线人脸识别，支持人脸采集、特诊提取、本地人脸库管理，同时支持离线激活、在线激活及批量激活，适合在无联网场景使用
+文档地址：https://ai.baidu.com/ai-doc/FACE/Yk37c1opz
+当前版本：8.0
+通过百度平台账户登录后，下载 Android-SDK(Baidu_Face_Offline_SDK_Android_8.0) 文件
+新建 Android 工程，添加 Module(FaceSDKAndroid\facelibrary)
+按理本文到此也该结束，但百度的 SDK 集成，着实踩了相当多的坑！
+在通过 File -&amp;gt; New -&amp;gt; Import Module 时，报：Could not find method compile() for arguments [directory &amp;rsquo;libs&#39;] 因为 gradle 已经作废了 compile，用 api 替换;
+修改 facelibrary\build.gradle 中 dependencies
+修改前
+compile fileTree(include: [&amp;#39;*.jar&amp;#39;], dir: &amp;#39;libs&amp;#39;)compile files(&amp;#39;libs/orbbec_module-debug.aar&amp;#39;) 修改后
+api fileTree(include: [&amp;#39;*.jar&amp;#39;], dir: &amp;#39;libs&amp;#39;)compileOnly files(&amp;#39;libs/orbbec_module-debug.aar&amp;#39;) 能调试，但编译时报：Direct local .aar file dependencies are not supported when building an AAR. 因为在新版的 Android studio 中，对 aar 包的引用方式有变化，这里不作探讨，解决方法参考上一条</description>
+    </item>
+    
     <item>
       <title>Flutter 插件之 Webview_flutter - 浏览器</title>
       <link>https://wild-coffee.github.io/blog/post/flutter-%E6%8F%92%E4%BB%B6%E4%B9%8B-webview_flutter-%E6%B5%8F%E8%A7%88%E5%99%A8/</link>
