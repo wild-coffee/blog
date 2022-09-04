@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ubuntu 系统安装与常用配置</title>
+        
+            <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
+        
+        <style>
+
+    html body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://wild-coffee.github.io/blog/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.102.3" />
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Ubuntu 系统安装与常用配置</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/blog/">Home</a></li>
+                            
+                                <li><a href="/blog/csharp">C# .NET</a></li>
+                            
+                                <li><a href="/blog/dart">Dart &amp; Flutter</a></li>
+                            
+                                <li><a href="/blog/python">Python &amp; ML</a></li>
+                            
+                                <li><a href="/blog/manual">工具 &amp; 手册</a></li>
+                            
+                                <li><a href="/blog/notebook">随笔 &amp; 感想</a></li>
+                            
+                                <li><a href="/blog/others">Others</a></li>
+                            
+                                <li><a href="/blog/about">About</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:wild-coffee@foxmail.com"><i class="fas fa-envelope"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/wild-coffee/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/7790729/wild-coffee"><i class="fab fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>Ubuntu 系统安装与常用配置</h2>
+        <h5>June 16, 2022</h5>
+        
+
+    </div>
+
+    <div align="start" class="content"><hr>
+<h3 id="安装">安装</h3>
+<p>在 bios 中先启用 UEFI（disabled CMS ）</p>
+<p>分区，以 1TB 磁盘为例</p>
+<ul>
+<li>
+<p><code>EFI</code> 分区，如果不显示，则需要在 BIOS 中启用 UEFI，建议 4GB，Logical, Beginning of this space</p>
+</li>
+<li>
+<p><code>SWAP</code> 分区，建议大小为内存的 2 倍，Primary, Beginning of this space</p>
+</li>
+<li>
+<p>挂载点 <code>/</code> ，存放 ubuntu 系统文件，建议 128GB，Logical, Beginning of this space</p>
+</li>
+<li>
+<p>挂载点 <code>/urs</code>，存放用户自定义程序，建议 128GB，Logical, Beginning of this space</p>
+</li>
+<li>
+<p>挂载点 <code>/home</code>，用户目录，余下所有空间，Logical, Beginning of this space</p>
+</li>
+</ul>
+<h3 id="基础配置">基础配置</h3>
+<ul>
+<li>
+<p>在软件设置里把 SourceList 源设置为 aliyun，启动 Software&amp;Updates 进行更新升级</p>
+</li>
+<li>
+<p>安装拼音输入法</p>
+<p><code>sudo apt-get install fcitx-googlepinyin</code></p>
+<p>打开 Language Support 程序，设置 Keyboard input method system: &ldquo;fcitx&rdquo;</p>
+<p>屏幕右上角，单击 google pinyin -&gt; Configure，添加 google pinyin 输入法</p>
+<p>google pinyin 切换快捷键为 <code>ctrl + space</code>，中英切换快捷键为 <code>shift</code></p>
+</li>
+<li>
+<p>ubuntu 安装 dotnet 开发环境</p>
+<p><a href="https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-snap">https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-snap</a></p>
+</li>
+</ul>
+<h3 id="常见问题">常见问题</h3>
+<ul>
+<li>
+<p>使用 snap 命令安装软件时，提示 <em>cannot install &ldquo;&mdash;&rdquo;: snap &ldquo;&mdash;&rdquo; has &ldquo;install-snap&rdquo; change in progress</em></p>
+<p>此问题原因是安装的软件已经启动了一个安装，还在进行中，未成功，需要手动结束</p>
+<pre tabindex="0"><code>snap changes            # 找到正在安装的 ID
+sudo snap abort ID
+</code></pre></li>
+</ul>
+</div>
+
+    
+    
+    
+
+    
+    
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+

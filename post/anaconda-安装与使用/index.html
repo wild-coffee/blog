@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Anaconda 安装与使用</title>
+        
+            <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
+        
+        <style>
+
+    html body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://wild-coffee.github.io/blog/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.102.3" />
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Anaconda 安装与使用</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/blog/">Home</a></li>
+                            
+                                <li><a href="/blog/csharp">C# .NET</a></li>
+                            
+                                <li><a href="/blog/dart">Dart &amp; Flutter</a></li>
+                            
+                                <li><a href="/blog/python">Python &amp; ML</a></li>
+                            
+                                <li><a href="/blog/manual">工具 &amp; 手册</a></li>
+                            
+                                <li><a href="/blog/notebook">随笔 &amp; 感想</a></li>
+                            
+                                <li><a href="/blog/others">Others</a></li>
+                            
+                                <li><a href="/blog/about">About</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:wild-coffee@foxmail.com"><i class="fas fa-envelope"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/wild-coffee/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/7790729/wild-coffee"><i class="fab fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>Anaconda 安装与使用</h2>
+        <h5>June 21, 2022</h5>
+        
+
+    </div>
+
+    <div align="start" class="content"><hr>
+<p>Anaconda 官网介绍为 The World&rsquo;s Most Popular Data Science Platform，一个数据科学计算平台，但对我来说她是一个 Python 包管理器和环境管理器。</p>
+<p>假设电脑上需要运行多种 Python 环境，每个环境的 Python 版本不一样，所依赖的包的版本可能也不一样，安装多个版本的 Python 会导致管理的混乱，尤其是删除时，十分的麻烦。</p>
+<p>Anaconda 可以完美地解决这个问题。</p>
+<p>她通过创建多个虚拟环境，来隔离各个运行环境，每个虚拟空间拥有自己的 Python 版本及依赖包，结合空间创建、切换、删除等命令，方便地进行运行环境搭建。</p>
+<h3 id="anaconda-安装配置升级和卸载">Anaconda 安装、配置、升级和卸载</h3>
+<p>Anaconda 官网地址：<a href="https://www.anaconda.com/">https://www.anaconda.com/</a></p>
+<p>阿里云下载地址：<a href="https://mirrors.aliyun.com/anaconda/">https://mirrors.aliyun.com/anaconda/</a></p>
+<p>清华源下载地址：<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/">https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/</a></p>
+<p>下载对应版本 .sh 文件，通过 bash 命令运行安装： <code>bash Anaconda3-5.3.1-Linux-x86_64.sh</code></p>
+<p>安装完成后运行：<code>conda --version</code>，验证是否成功</p>
+<p>conda 安装后，启动命令行，默认就会进入 base 环境，可通过以下方式开关该特性</p>
+<p><code>conda config --set auto_activate_base false</code></p>
+<h3 id="配置镜像源">配置镜像源</h3>
+<p>设置 conda 阿里云镜像（ubuntu）</p>
+<p>修改 home 目录下的 .condarc 文件</p>
+<pre tabindex="0"><code>show_channel_urls: true
+channels:
+- http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+- http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+- http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+- http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro
+- http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+</code></pre><p>设置 conda 清华镜像源</p>
+<pre tabindex="0"><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --set show_channel_urls yes
+</code></pre><p>以上命令运行成功后，会生成 ～/.condarc 文件，可直接编辑该文件来修改 conda 镜像源</p>
+<p>设置 pip 清华镜像源（虚拟环境运行）</p>
+<p><code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+<p>设置 pip 阿里云镜像（虚拟环境运行）</p>
+<p><code>pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</code></p>
+<p>Anaconda 安装时，提示是否执行 conda init，官方建议 no（ubuntu），此时进入终端环境，提示 conda 命令不存在，需要手动执行 init</p>
+<p>ubuntu 命令：</p>
+<pre tabindex="0"><code>source /home/alan/anaconda3/bin/activate
+conda init
+</code></pre><h3 id="anaconda-虚拟环境管理创建切换删除等">Anaconda 虚拟环境管理，创建、切换、删除等</h3>
+<pre tabindex="0"><code>conda create -n open-mmlab python=3.6 -y        # 创建虚拟空间时，需要指定 python 版（3.6）和虚拟环境名字（open-mmlab）
+conda activate open-mmlab                       # 进入虚拟环境 open-mmlab
+conda deactivate                                # 退出虚拟环境
+conda remove --name open-mmlab --all            # 删除 open-mmlab 空间
+</code></pre><h3 id="anaconda-包管理">Anaconda 包管理</h3>
+<p>在 anaconda 环境中，一般采用 <code>conda install</code> 和 <code>pip install</code> 安装包，其中优先使用 <code>conda install</code>，具体的安装命令以第三方包说明为准</p>
+<pre tabindex="0"><code>conda list                                      # 查看已安装包列表
+conda install cuda -c nvidia                    # 安装 CUDA 工具
+conda install pytorch torchvision -c pytorch    # 安装 pytorch
+pip install mmdet==2.14.0                       # 安装 mmdet
+pip install mmsegmentation==0.14.1              # 安装 mmsegmentation
+conda info cuda                                 # 查看包信息
+conda search cuda                               # 搜索包
+conda install cuda=version                      # 安装指定版本的 CUDA 工具
+</code></pre><p>由于 conda 环境中可以用多种方式来安装包，而卸载时无法区分安装方式，可依次使用 conda 和 pip 命令删除，直到成功</p>
+<pre tabindex="0"><code>conda uninstall mmsegmentation
+conda remove mmsegmentation
+pip uninstall mmsegmentation
+</code></pre></div>
+
+    
+    
+    
+
+    
+    
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+

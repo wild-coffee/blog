@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Flutter 插件之 Flutter_tts - 合成声音</title>
+        
+            <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
+        
+        <style>
+
+    html body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://wild-coffee.github.io/blog/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.102.3" />
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Flutter 插件之 Flutter_tts - 合成声音</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/blog/">Home</a></li>
+                            
+                                <li><a href="/blog/csharp">C# .NET</a></li>
+                            
+                                <li><a href="/blog/dart">Dart &amp; Flutter</a></li>
+                            
+                                <li><a href="/blog/python">Python &amp; ML</a></li>
+                            
+                                <li><a href="/blog/manual">工具 &amp; 手册</a></li>
+                            
+                                <li><a href="/blog/notebook">随笔 &amp; 感想</a></li>
+                            
+                                <li><a href="/blog/others">Others</a></li>
+                            
+                                <li><a href="/blog/about">About</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:wild-coffee@foxmail.com"><i class="fas fa-envelope"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/wild-coffee/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/7790729/wild-coffee"><i class="fab fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>Flutter 插件之 Flutter_tts - 合成声音</h2>
+        <h5>June 20, 2022</h5>
+        
+
+    </div>
+
+    <div align="start" class="content"><hr>
+<p>flutter_tts 是一个将文字转换为合成声音的插件，支持多语言及播放控制等</p>
+<p>插件地址：<a href="https://pub.flutter-io.cn/packages/flutter_tts">https://pub.flutter-io.cn/packages/flutter_tts</a></p>
+<p>API （version 3.3.3）介绍：</p>
+<pre tabindex="0"><code>FlutterTts()                                                        # 构造
+
+Future&lt;dynamic&gt; isLanguageAvailable(String language) async          # 是否支持某种语言
+Future&lt;dynamic&gt; get getLanguages async                              # 支持的语言列表
+Future&lt;dynamic&gt; setLanguage(String language) async                  # 设置合成语言
+
+Future&lt;dynamic&gt; setSpeechRate(double rate) async                    # 速率
+Future&lt;dynamic&gt; setVolume(double volume) async                      # 音量
+Future&lt;dynamic&gt; setPitch(double pitch) async                        # 音调
+
+Future&lt;dynamic&gt; awaitSpeakCompletion(bool awaitCompletion) async    # 等待声音播放完成
+Future&lt;dynamic&gt; speak(String text) async                            # 播放声音
+Future&lt;dynamic&gt; pause() async                                       # 暂停（iOS|Web）
+Future&lt;dynamic&gt; stop() async                                        # 停止
+</code></pre></div>
+
+    
+    
+    
+
+    
+    
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>安装 Windows 7 X64 系统相关注意事项</title>
+        
+            <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
+        
+        <style>
+
+    html body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://wild-coffee.github.io/blog/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.102.3" />
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">安装 Windows 7 X64 系统相关注意事项</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/blog/">Home</a></li>
+                            
+                                <li><a href="/blog/csharp">C# .NET</a></li>
+                            
+                                <li><a href="/blog/dart">Dart &amp; Flutter</a></li>
+                            
+                                <li><a href="/blog/python">Python &amp; ML</a></li>
+                            
+                                <li><a href="/blog/manual">工具 &amp; 手册</a></li>
+                            
+                                <li><a href="/blog/notebook">随笔 &amp; 感想</a></li>
+                            
+                                <li><a href="/blog/others">Others</a></li>
+                            
+                                <li><a href="/blog/about">About</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:wild-coffee@foxmail.com"><i class="fas fa-envelope"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/wild-coffee/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/7790729/wild-coffee"><i class="fab fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>安装 Windows 7 X64 系统相关注意事项</h2>
+        <h5>June 16, 2022</h5>
+        
+
+    </div>
+
+    <div align="start" class="content"><hr>
+<h3 id="bios-设置">BIOS 设置</h3>
+<ul>
+<li>
+<p>打开 Launch CSM</p>
+</li>
+<li>
+<p>关闭 Secure BOOT</p>
+</li>
+</ul>
+<h3 id="u盘工具制作">U盘工具制作</h3>
+<ul>
+<li>
+<p>UltraISO 软件</p>
+<ol>
+<li>格式化为 FAT32</li>
+<li>USB-HDD+ 模式</li>
+<li>菜单 -&gt; 启动 -&gt; 写入硬盘映像</li>
+</ol>
+</li>
+<li>
+<p>Window 7 64 位 ISO 文件</p>
+<ul>
+<li>
+<p>下载地址为 <a href="https://msdn.itellyou.cn/">https://msdn.itellyou.cn/</a></p>
+</li>
+<li>
+<p>给制作的启动 U 盘文件添加 BootX64.efi 特殊文件</p>
+<ol>
+<li>BootX64.efi 来源：安装了 Win8/10系统的 C:\Windows\Boot\EFI\bootmgfw.efi</li>
+<li>在制作的启动 U 盘的 EFI 根目录下面，新建 Boot 文件夹，把 bootmgfw.efi 复制到该文件夹，并重命名为：BootX64.efi</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="常见问题汇总">常见问题汇总</h3>
+<ul>
+<li>
+<p>Invalid signature detected</p>
+<p>BIOS 设置中 Secure BOOT 未关闭</p>
+</li>
+<li>
+<p>一直停留在 Windows 正在启动界面</p>
+<p>BIOS 设置中 Launch CSM   未打开</p>
+</li>
+<li>
+<p>BIOS 启动选项中没有 U 盘启动的选项</p>
+<p>U盘工具制作中，未给启动 U 盘添加特殊文件</p>
+</li>
+<li>
+<p>电脑开机过程中 BIOS 一闪而过，无法进入 BIOS 设置界面</p>
+<p>一般由 Win8/10 降级到 Win7 产生问题，需要关闭快速启动：电源选项 -&gt; 选择电源按钮功能 -&gt; 更改当前不可用设置 -&gt; 关闭启用快速启动</p>
+</li>
+</ul>
+</div>
+
+    
+    
+    
+
+    
+    
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+

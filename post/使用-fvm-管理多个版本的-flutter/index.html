@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>使用 FVM 管理多个版本的 Flutter</title>
+        
+            <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
+        
+        <style>
+
+    html body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://wild-coffee.github.io/blog/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.102.3" />
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">使用 FVM 管理多个版本的 Flutter</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/blog/">Home</a></li>
+                            
+                                <li><a href="/blog/csharp">C# .NET</a></li>
+                            
+                                <li><a href="/blog/dart">Dart &amp; Flutter</a></li>
+                            
+                                <li><a href="/blog/python">Python &amp; ML</a></li>
+                            
+                                <li><a href="/blog/manual">工具 &amp; 手册</a></li>
+                            
+                                <li><a href="/blog/notebook">随笔 &amp; 感想</a></li>
+                            
+                                <li><a href="/blog/others">Others</a></li>
+                            
+                                <li><a href="/blog/about">About</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:wild-coffee@foxmail.com"><i class="fas fa-envelope"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/wild-coffee/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/7790729/wild-coffee"><i class="fab fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>使用 FVM 管理多个版本的 Flutter</h2>
+        <h5>June 20, 2022</h5>
+        
+
+    </div>
+
+    <div align="start" class="content"><hr>
+<p>Flutter version manager (FVM)，是一个在本机管理多个 flutter 版本的 CLI 工具，官方地址为：<a href="https://fvm.app/">https://fvm.app/</a></p>
+<p>在开发工具 Visual studio code 中配置：<a href="https://fvm.app/docs/getting_started/configuration#vs-code">https://fvm.app/docs/getting_started/configuration#vs-code</a></p>
+<p>在源代码管理 GIT 中配置：<a href="https://fvm.app/docs/getting_started/configuration#project">https://fvm.app/docs/getting_started/configuration#project</a></p>
+<h3 id="安装-choco">安装 choco</h3>
+<p>用管理员身份运行 cmd | Powershell</p>
+<pre tabindex="0"><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &#34;iex ((new-object net.webclient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&#34; &amp;&amp; SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+</code></pre><p>安装完成后，执行以下命令，检查安装及升级</p>
+<pre tabindex="0"><code>choco -v
+choco upgrade chocolatey
+</code></pre><h3 id="安装-fvm">安装 FVM</h3>
+<pre tabindex="0"><code>choco install fvm
+fvm --version
+</code></pre><h3 id="使用-fvm-安装多个版本的-flutter">使用 FVM 安装多个版本的 Flutter</h3>
+<pre tabindex="0"><code>fvm releases                            # 查看可用的 flutter 版本
+fvm list                                # 查看已安装的版本
+fvm config                              # 查看 fvm 配置，包括缓存 flutter 仓库路径
+fvm config --cache-path &lt;CACHE_PATH&gt;    # 设置缓存 flutter 仓库路径
+fvm install 2.2.3                       # 安装指定版本的 flutter
+fvm remove 2.2.3                        # 删除指定版本的 flutter
+fvm global 2.2.3                        # 设置全局 flutter 版本
+fvm use 1.17.2                          # 设置当前项目的 flutter 版本(在项目命令行中执行)
+</code></pre><h3 id="配置开发环境">配置开发环境</h3>
+<p>配置 <code>FVM_HOME</code> 路径，在用户环境变量中添加 <code>FVM_HOME</code>，指向 <code>fvm config</code> 中设置的 PATH</p>
+<pre tabindex="0"><code>FVM_HOME = C:\Users\alan\fvm
+</code></pre><p>配置 Visual studio code -&gt; file -&gt; Preferences -&gt; setting -&gt; settings.json 添加</p>
+<pre tabindex="0"><code>&#34;dart.flutterSdkPaths&#34;: [&#34;%FVM_HOME%\\versions&#34;],
+&#34;dart.flutterSdkPath&#34;: &#34;.fvm\\flutter_sdk&#34;,
+</code></pre><h3 id="创建项目">创建项目</h3>
+<p>安装了 FVM 并移除 flutter PATH 变量后，在 visual studio code <code>CTRL + SHIFT + P</code> 中就不能用 flutter 命令创建项目了</p>
+<pre tabindex="0"><code>mkdir test_fvm_application
+cd test_fvm_application                 # 创建项目目录，目录名字为 app 的名字（项目的名字）
+
+fvm use 2.10.5 --force                  # 配置项目使用 2.10.5，必须管理员运行，运行完成后目录下多了 .fvm 文件夹
+fvm flutter create . --org com.simple   # 使用 flutter 命令创建项目，名字为 test_fvm_application（.）
+</code></pre><h3 id="配置已存在项目">配置已存在项目</h3>
+<p>在项目命令行中选择当前项目的 SDK 版本</p>
+<p><code>flutter use</code> 命令会在项目根目录下建立 .fvm 文件夹，里面包含 flutter_sdk 符号链接文件和 fvm_config.json 项目配置</p>
+<p>该命令必须以管理员身份运行，否则无法创建 flutter_sdk 符号链接</p>
+<pre tabindex="0"><code>fvm use 2.10.5                          # 切换项目使用的 flutter 版本，若创建时已指定，可跳过
+fvm flutter pub get                     # 更新项目依赖包，创建后已自动执行，可跳过
+</code></pre><p>在项目 .gitignore 中忽略该文件夹(.fvm)</p>
+<pre tabindex="0"><code># Fvm configuration
+.fvm
+</code></pre><p>在项目 .vscode/settings.json 中配置不允许搜索和监控 flutter_sdk 目录</p>
+<pre tabindex="0"><code>{
+  &#34;dart.flutterSdkPath&#34;: &#34;.fvm/flutter_sdk&#34;,
+  // Remove .fvm files from search
+  &#34;search.exclude&#34;: {
+    &#34;**/.fvm&#34;: true
+  },
+  // Remove from file watching
+  &#34;files.watcherExclude&#34;: {
+    &#34;**/.fvm&#34;: true
+  }
+}
+</code></pre></div>
+
+    
+    
+    
+
+    
+    
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+

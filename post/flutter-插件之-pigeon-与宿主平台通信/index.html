@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Flutter 插件之 Pigeon - 与宿主平台通信</title>
+        
+            <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
+        
+        <style>
+
+    html body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://wild-coffee.github.io/blog/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.102.3" />
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Flutter 插件之 Pigeon - 与宿主平台通信</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/blog/">Home</a></li>
+                            
+                                <li><a href="/blog/csharp">C# .NET</a></li>
+                            
+                                <li><a href="/blog/dart">Dart &amp; Flutter</a></li>
+                            
+                                <li><a href="/blog/python">Python &amp; ML</a></li>
+                            
+                                <li><a href="/blog/manual">工具 &amp; 手册</a></li>
+                            
+                                <li><a href="/blog/notebook">随笔 &amp; 感想</a></li>
+                            
+                                <li><a href="/blog/others">Others</a></li>
+                            
+                                <li><a href="/blog/about">About</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:wild-coffee@foxmail.com"><i class="fas fa-envelope"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/wild-coffee/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/7790729/wild-coffee"><i class="fab fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>Flutter 插件之 Pigeon - 与宿主平台通信</h2>
+        <h5>June 20, 2022</h5>
+        
+
+    </div>
+
+    <div align="start" class="content"><hr>
+<p>Pigeon is a code generator tool to make communication between Flutter and the host platform type-safe, easier and faster.</p>
+<p>Pigeon 是一个代码生成工具，让 Flutter 与宿主平台更简单、更快捷且类型安全地通信。非常类似于：<a href="https://developers.google.cn/protocol-buffers">Protocol Buffer</a></p>
+<p>Pigeon 支持在 iOS 平台生成 Object-C 代码，在 Android 平台生成 Java 代码</p>
+<p>插件地址：<a href="https://pub.flutter-io.cn/packages/pigeon">https://pub.flutter-io.cn/packages/pigeon</a></p>
+<p>仓库地址：<a href="https://github.com/flutter/packages/tree/master/packages/pigeon/pigeons">https://github.com/flutter/packages/tree/master/packages/pigeon/pigeons</a></p>
+<p>示例地址：<a href="https://github.com/gaaclarke/pigeon_plugin_example">https://github.com/gaaclarke/pigeon_plugin_example</a></p>
+<p>API （1.0.18）介绍：</p>
+<h3 id="创建插件工程并安装-pigeon">创建插件工程，并安装 Pigeon</h3>
+<pre tabindex="0"><code>flutter create --template=plugin --platforms=android,ios -i swift -a kotlin day08_pigeon
+</code></pre><p>通过 plugin 模板创建的项目中：</p>
+<p>1.有一个 example 文件夹，里面可以添加插件使用示例代码，方便测试插件</p>
+<p>2.在 pubspec.yaml 文件中，指定了各个平台真实实现的类名信息</p>
+<pre tabindex="0"><code>flutter:
+plugin:
+    platforms:
+    android:
+        package: com.example.day08_pigeon
+        pluginClass: Day08PigeonPlugin
+    ios:
+        pluginClass: Day08PigeonPlugin
+</code></pre><p>因为 Pigeon 是一个代码生成工具，并不需要运行时支持，所以只需要在 dev_dependencies 中添加</p>
+<h3 id="添加协议">添加协议</h3>
+<p>在项目的根目录中添加 pigeons 目录，并在里面添加需要宿主平台支持的 API，命名为 messages.dart，该文件为通信协议文件</p>
+<p>这里参考示例，获取自定义宿主平台版本号为例：</p>
+<pre tabindex="0"><code>import &#39;package:pigeon/pigeon.dart&#39;;
+ 
+class MyVersion {
+  String? myVersionResult;
+}
+ 
+@HostApi()
+abstract class ExampleApi {
+  MyVersion getMyPlatformVersionResult();
+}
+</code></pre><h3 id="运行-flutter-pub-run-pigeon-生成代码">运行 flutter pub run pigeon 生成代码</h3>
+<p>可以手写命令行，也可以参考示例中的方法，建立一个 run_pigeon.sh 文件，把命令写在文件中，当 API 更新后，再运行这个文件就行</p>
+<p>当命令执行完成后，会在 .sh 文件中配置的位置，创建相应的 java 和 object-c 代码</p>
+<p>备注：windows 平台下无法直接运行 .sh 文件，可通过 git bash 来运行</p>
+<pre tabindex="0"><code>flutter pub run pigeon \
+  --input pigeons/messages.dart \
+  --dart_out lib/messages.dart \
+  --objc_header_out ios/Classes/messages.h \
+  --objc_source_out ios/Classes/messages.m \
+  --objc_prefix FLT \
+  --java_out android/src/main/java/com/example/day08_pigeon/Messages.java \
+  --java_package &#34;com.example.day08_pigeon&#34;
+</code></pre><h3 id="实现宿主平台的-api">实现宿主平台的 API</h3>
+<p>以 Android 平台为例，当 run_pigeon.sh 文件执行后，在项目中的 android/src/main 中，生成了 Java 文件 Messages.java，位置以 .sh 中 java_out 配置项为准</p>
+<p>在 Java 文件中，会生成一个 public interface ExampleApi 接口，即在 messages.dart 中被标记为 @HostApi() 的抽象类，该接口为同名的协议接口</p>
+<p>同时，在项目中的 android/src/main 中，生成了 Kotlin 文件，Day08PigeonPlugin.kt，该文件为与 Android 平台通信类</p>
+<p>该类默认继承自 FlutterPlugin, MethodCallHandler</p>
+<p>可在该类中直接添加协议接口实现（ExampleApi），也可以其它方式，比如创建新类来统一实现协议方法</p>
+<p>这里以直接添加实现接口为例，添加 ExampleApi，并实现接口的所有方法和属性（由协议 messages.dart 定义）</p>
+<p>同时，在该类的 FlutterPlugin 接口的 onAttachedToEngine，onDetachedFromEngine 方法中，通过调用 setup 方法来绑定 flutter 引擎具体调用的协议实现类对象</p>
+<pre tabindex="0"><code>package com.example.day08_pigeon
+ 
+import androidx.annotation.NonNull
+ 
+/// 导入生成的 Java 文件中的包
+import com.example.day08_pigeon.Messages.MyVersion
+import com.example.day08_pigeon.Messages.ExampleApi
+ 
+import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.plugin.common.MethodCall
+import io.flutter.plugin.common.MethodChannel
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler
+import io.flutter.plugin.common.MethodChannel.Result
+ 
+/** Day08PigeonPlugin */
+class Day08PigeonPlugin: FlutterPlugin, MethodCallHandler, ExampleApi {
+  /// The MethodChannel that will the communication between Flutter and native Android
+  ///
+  /// This local reference serves to register the plugin with the Flutter Engine and unregister it
+  /// when the Flutter Engine is detached from the Activity
+  private lateinit var channel : MethodChannel
+ 
+  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, &#34;day08_pigeon&#34;)
+    channel.setMethodCallHandler(this)
+ 
+    /// 绑定
+    ExampleApi.setup(flutterPluginBinding.binaryMessenger, this)
+  }
+ 
+  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+    if (call.method == &#34;getPlatformVersion&#34;) {
+      result.success(&#34;Android ${android.os.Build.VERSION.RELEASE}&#34;)
+    } else {
+      result.notImplemented()
+    }
+  }
+ 
+  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+    channel.setMethodCallHandler(null)
+ 
+    /// 解绑
+    ExampleApi.setup(binding.binaryMessenger, null)
+  }
+ 
+  /// 协议实现
+  override fun getMyPlatformVersionResult(): MyVersion {
+    val myVersion = MyVersion()
+    myVersion.myVersionResult = &#34;123.456.789&#34;
+    return myVersion
+  }
+}
+</code></pre><h3 id="在-example-中添加测试代码">在 example 中添加测试代码</h3>
+<p>在插件本身 lib 中导入 pigeon 生成的 messages.dart 库文件，并在 day08_pigeon.dart 添加访问库代码</p>
+<pre tabindex="0"><code>import &#39;dart:async&#39;;
+import &#39;dart:io&#39;;
+ 
+import &#39;package:flutter/services.dart&#39;;
+ 
+import &#39;messages.dart&#39;;
+ 
+class Day08Pigeon {
+  static const MethodChannel _channel = MethodChannel(&#39;day08_pigeon&#39;);
+ 
+  static Future&lt;MyVersion&gt; get myPlatformVersionResult async {
+    if (Platform.isAndroid || Platform.isIOS) {
+      var exampleApi = ExampleApi();
+      return await exampleApi.getMyPlatformVersionResult();
+    }
+ 
+    throw PlatformException(code: &#39;not suport ${Platform.operatingSystem}&#39;);
+  }
+ 
+  static Future&lt;String?&gt; get platformVersion async {
+    final String? version = await _channel.invokeMethod(&#39;getPlatformVersion&#39;);
+    return version;
+  }
+}
+</code></pre><p>在 example 的 main.dart 中添加测试代码</p>
+<pre tabindex="0"><code>try {
+  var result = await Day08Pigeon.myPlatformVersionResult;
+  var version = result.myVersionResult;
+  if (kDebugMode) {
+    print(&#39;my version = $version&#39;);
+  }
+} on PlatformException {
+  platformVersion = &#39;Failed to get myPlatformVersionResult.&#39;;
+}
+</code></pre><p>完成！</p>
+</div>
+
+    
+    
+    
+
+    
+    
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+

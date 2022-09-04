@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Flutter 安装及环境配置</title>
+        
+            <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
+        
+        <style>
+
+    html body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://wild-coffee.github.io/blog/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.102.3" />
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Flutter 安装及环境配置</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/blog/">Home</a></li>
+                            
+                                <li><a href="/blog/csharp">C# .NET</a></li>
+                            
+                                <li><a href="/blog/dart">Dart &amp; Flutter</a></li>
+                            
+                                <li><a href="/blog/python">Python &amp; ML</a></li>
+                            
+                                <li><a href="/blog/manual">工具 &amp; 手册</a></li>
+                            
+                                <li><a href="/blog/notebook">随笔 &amp; 感想</a></li>
+                            
+                                <li><a href="/blog/others">Others</a></li>
+                            
+                                <li><a href="/blog/about">About</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:wild-coffee@foxmail.com"><i class="fas fa-envelope"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/wild-coffee/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/7790729/wild-coffee"><i class="fab fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>Flutter 安装及环境配置</h2>
+        <h5>June 20, 2022</h5>
+        
+
+    </div>
+
+    <div align="start" class="content"><hr>
+<p>Flutter 是 Google 开源的应用开发框架，仅通过一套代码库，就能构建精美的、原生平台编译的多平台应用。官方网站：<a href="https://flutter.cn/">https://flutter.cn/</a></p>
+<h3 id="安装及环境变量配置">安装及环境变量配置</h3>
+<p>最新的安装方法以开发文档为准：<a href="https://flutter.cn/docs/get-started/install/windows">https://flutter.cn/docs/get-started/install/windows</a></p>
+<p>下载最新的 SDK ：<a href="https://flutter.cn/docs/get-started/install">https://flutter.cn/docs/get-started/install</a>，下载后，把解压得到的 flutter 目录复制到用户目录（C:\Users\Alan\flutter）</p>
+<p>配置环境 Path 指定 SDK 路径</p>
+<p>在用户环境变量 Path 中添加：<code>%USERPROFILE%\flutter\bin</code>，添加完成后命令行执行：<code>where flutter dart</code>，可工作即可</p>
+<p>在用户环境变量中添加以下以下 2 个变量，以解决国内 flutter 升级、包更新等太慢的问题</p>
+<pre tabindex="0"><code>PUB_HOSTED_URL=https://pub.flutter-io.cn
+FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+</code></pre><h3 id="flutter-doctor-检查安装-android-studio-及-android-sdk">Flutter doctor 检查，安装 Android studio 及 Android SDK</h3>
+<p>在 Flutter 安装完成后，启动命令行执行：<code>flutter doctor</code> 检查，全部为绿色则表示 flutter 安装成功</p>
+<ul>
+<li>
+<p>错误 1：Android toolchain - develop for Android devices.</p>
+<p>则需要安装 Android studio，下载地址：<code>https://developer.android.google.cn/studio?hl=zh-cn</code></p>
+</li>
+<li>
+<p>错误 2：cmdline-tools component is missing</p>
+<p>则需要在 Android studio 中安装：SDK Manager-&gt;SDK Tools-&gt;Android SDK Command-line Tools(latest)</p>
+<p>安装完成后执行：<code>flutter doctor --android-licenses</code></p>
+</li>
+</ul>
+<h3 id="flutter-升级">Flutter 升级</h3>
+<p>Flutter 支持 master，dev，beta，stable 等发布渠道，开发一般用 stable 渠道</p>
+<pre tabindex="0"><code>flutter channel                     # 可以查看 Flutter 支持的发布渠道及当前使用的发布渠道
+flutter channel &lt;channel name&gt;      # 切换 Flutter 的发布渠道
+flutter upgrade                     # 升级当前渠道最新代码
+</code></pre><p>如果只想升级管理项目依赖包，可以使用 flutter pub 命令（pub 命令需要进入到项目所在目录）</p>
+<pre tabindex="0"><code>flutter pub upgrade                 # 按 pubspec.yaml 配置把所有依赖更新到最新的兼容版本
+flutter pub get                     # 按 pubspec.yaml 配置下载项目所有依赖包
+flutter clean                       # 清理项目所有依赖包及编译产生的相关文件
+flutter pub outdated                # 查看需要升级的依赖包情况
+dart fix --apply                    # 修复工程
+</code></pre><h3 id="解决-running-gradle-task-assembledebug-gradle-sync-failed-问题">解决 Running Gradle task &lsquo;assembleDebug&rsquo;&hellip; gradle sync failed 问题</h3>
+<p>打开 Windows 设置 &gt; 网络和 Internet &gt; 代理，找到本地代理的端口</p>
+<p>打开 Android Studio 里的 Setting  &gt; Appearance &amp; Behavior &gt; System settings &gt; HTTP Proxy</p>
+<p>启用 Manual proxy configuration，启用 HTTP，配置 Host name 为代理 IP，同时设置代理端口</p>
+<p>点击 Check connection，使用 dl.google.com 测试，成功则代表代理配置正确，点击应用确认，在菜单 File &gt; Sync Project with Gradle Files</p>
+</div>
+
+    
+    
+    
+
+    
+    
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+
