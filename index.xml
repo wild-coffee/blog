@@ -6,7 +6,33 @@
     <description>Recent content on wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Github 使用 SSH 认证</title>
+      <link>https://wild-coffee.github.io/blog/post/github-%E4%BD%BF%E7%94%A8-ssh-%E8%AE%A4%E8%AF%81/</link>
+      <pubDate>Tue, 11 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/github-%E4%BD%BF%E7%94%A8-ssh-%E8%AE%A4%E8%AF%81/</guid>
+      <description>从 2021 年 8 月开始，github 对于远程私有仓库不再支持使用 https 的方式访问了
+配置 ssh 验证
+创建 ssh 密钥 ssh-keygen -t rsa -b 4096 -C &amp;#34;user@mail.com&amp;#34; #创建之前建议检查一下是否已存在 #这里必须使用 github 登陆的邮箱，否则无法认证 #提示设置 rsa 文件存储路径，建议默认（home/.ssh/id_rsa） #会提示输入密码，可选择不输入（输入密码后，则每次 pull、push 都需要输入密码） 在 github 的 setting/ssh key 配置里面添加 key 打开上一步生成的 id_rsa.pub 文件（home/.ssh/），复制里面的内容到添加 key 界面即可</description>
+    </item>
+    
+    <item>
+      <title>使用 fat-aar 给 aar 嵌入第三方库</title>
+      <link>https://wild-coffee.github.io/blog/post/%E4%BD%BF%E7%94%A8-fataar-%E7%BB%99-aar-%E5%B5%8C%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</link>
+      <pubDate>Tue, 11 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/%E4%BD%BF%E7%94%A8-fataar-%E7%BB%99-aar-%E5%B5%8C%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</guid>
+      <description>Android aar 库，携带了代码以及资源，但没有包含所引用的第三方库
+fat-aar 正式解决这个问题
+https://github.com/kezong/fat-aar-android
+先在整个项目的 build.gradle(project) 文件中添加该插件，可添加在最顶部位置 buildscript { repositories { mavenCentral() } dependencies { classpath &amp;#39;com.github.kezong:fat-aar:1.3.8&amp;#39; } } 在 aar 项目的 build.gradle(module) 文件中启动该插件 apply plugin: &amp;#39;com.kezong.fat-aar&amp;#39; 查找 aar 所有依赖的第三方 aar 库（嵌套的依赖问题） 在 Android studio 的 gradle 配置窗口，执行 aar/Task/Android/androidDependencies 任务 在 output 窗口即可知道所有依赖的第三方 aar 库
+嵌入第三方库 修改 aar 的 build.gradle(module) 配置中 dependencies 项
+将需要嵌入的第三方库的引用方式由 implementation 修改为 embed
+embed (&amp;#39;com.google.protobuf:protobuf-java:3.21.5&amp;#39;) 打包 aar 检查 打包 aar 后，并解压该文件，在解压目录 libs 中可看到嵌入的第三方库的 aar 文件即成功</description>
+    </item>
+    
     <item>
       <title>Android 集成百度离线人脸识别</title>
       <link>https://wild-coffee.github.io/blog/post/android-%E9%9B%86%E6%88%90%E7%99%BE%E5%BA%A6%E7%A6%BB%E7%BA%BF%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/</link>
@@ -238,7 +264,8 @@ Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中�
       <pubDate>Thu, 16 Jun 2022 16:50:31 +0800</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/manual/</guid>
-      <description>[2022-06-16] GIT 常用命令
+      <description>[2022-10-11] github 使用 ssh 认证
+[2022-06-16] GIT 常用命令
 [2022-06-17] 快捷键与命令
 [2022-06-16] Windows 系统常用运维
 [2022-06-16] Ubuntu 系统安装与常用配置
@@ -254,7 +281,8 @@ Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中�
       <pubDate>Thu, 16 Jun 2022 16:50:19 +0800</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/dart/</guid>
-      <description>[2022-07-12] Android 集成百度离线人脸识别
+      <description>[2022-07-12] 使用 fataar 给 aar 嵌入第三方库
+[2022-07-12] Android 集成百度离线人脸识别
 [2022-06-21] Dio 无法用 Fiddler 抓包问题
 [2022-06-21] flutter 插件之 webview_flutter - 浏览器
 [2022-06-20] flutter 插件之 pigeon - 与宿主平台通信
