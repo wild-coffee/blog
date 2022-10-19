@@ -6,7 +6,22 @@
     <description>Recent content on wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flutter Android 使用启动 Splash 页面防止启动白屏</title>
+      <link>https://wild-coffee.github.io/blog/post/flutter-android-%E4%BD%BF%E7%94%A8%E5%90%AF%E5%8A%A8-splash-%E9%A1%B5%E9%9D%A2%E9%98%B2%E6%AD%A2%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F/</link>
+      <pubDate>Wed, 19 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/flutter-android-%E4%BD%BF%E7%94%A8%E5%90%AF%E5%8A%A8-splash-%E9%A1%B5%E9%9D%A2%E9%98%B2%E6%AD%A2%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F/</guid>
+      <description>设置启动背景 android/app/src/main/res/drawable/launch_background.xml
+该文件为启动配置界面，取消以下代码注释
+同时添加启动界面图片 launch_image 到 mipmap 文件中
+&amp;lt;item&amp;gt; &amp;lt;bitmap android:gravity=&amp;#34;center&amp;#34; android:src=&amp;#34;@mipmap/launch_image&amp;#34; /&amp;gt; &amp;lt;/item&amp;gt; 设置启动界面全屏 android/app/src/main/res/values-night/styles.xml android/app/src/main/res/values/styles.xml
+修改所有 style 标签，添加以下属性：
+windowNoTitle windowFullscreen
+&amp;lt;style name=&amp;#34;LaunchTheme&amp;#34;&amp;gt; &amp;lt;!-- Show a splash screen on the activity. Automatically removed when the Flutter engine draws its first frame --&amp;gt; &amp;lt;item name=&amp;#34;android:windowNoTitle&amp;#34;&amp;gt;true&amp;lt;/item&amp;gt; &amp;lt;item name=&amp;#34;android:windowFullscreen&amp;#34;&amp;gt;true&amp;lt;/item&amp;gt; &amp;lt;item name=&amp;#34;android:windowBackground&amp;#34;&amp;gt;@drawable/launch_background&amp;lt;/item&amp;gt; &amp;lt;/style&amp;gt; </description>
+    </item>
+    
     <item>
       <title>Github 使用 SSH 认证</title>
       <link>https://wild-coffee.github.io/blog/post/github-%E4%BD%BF%E7%94%A8-ssh-%E8%AE%A4%E8%AF%81/</link>
@@ -281,7 +296,8 @@ Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中�
       <pubDate>Thu, 16 Jun 2022 16:50:19 +0800</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/dart/</guid>
-      <description>[2022-07-12] 使用 fataar 给 aar 嵌入第三方库
+      <description>[2022-10-19] Flutter Android 使用启动 Splash 页面防止启动白屏
+[2022-10-11] 使用 fataar 给 aar 嵌入第三方库
 [2022-07-12] Android 集成百度离线人脸识别
 [2022-06-21] Dio 无法用 Fiddler 抓包问题
 [2022-06-21] flutter 插件之 webview_flutter - 浏览器

@@ -5,7 +5,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Posts</title>
+        <title>Flutter Android 使用启动 Splash 页面防止启动白屏</title>
         
             <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
         
@@ -70,9 +70,6 @@
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
  <meta name="generator" content="Hugo 0.104.3" />
         
-            <link href="/blog/post/index.xml" rel="alternate" type="application/rss&#43;xml" title="wild-coffee" />
-            <link href="/blog/post/index.xml" rel="feed" type="application/rss&#43;xml" title="wild-coffee" />
-        
 
         
 
@@ -90,7 +87,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">Posts</a>
+                    <a class="navbar-brand visible-xs" href="#">Flutter Android 使用启动 Splash 页面防止启动白屏</a>
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -137,39 +134,36 @@
 
 <main>
 
-    <h2>Posts</h2>
+    <div>
+        <h2>Flutter Android 使用启动 Splash 页面防止启动白屏</h2>
+        <h5>October 19, 2022</h5>
+        
 
-     <div class="item">
+    </div>
 
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/">快捷键与命令</a></h4>
-    <h5>June 17, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
-
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">GIT 常用命令</a></h4>
-    <h5>June 16, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
+    <div align="start" class="content"><h1 id="设置启动背景">设置启动背景</h1>
+<p>android/app/src/main/res/drawable/launch_background.xml</p>
+<p>该文件为启动配置界面，取消以下代码注释</p>
+<p>同时添加启动界面图片 launch_image 到 mipmap 文件中</p>
+<pre tabindex="0"><code>&lt;item&gt;
+    &lt;bitmap
+        android:gravity=&#34;center&#34;
+        android:src=&#34;@mipmap/launch_image&#34; /&gt;
+&lt;/item&gt;
+</code></pre><h1 id="设置启动界面全屏">设置启动界面全屏</h1>
+<p>android/app/src/main/res/values-night/styles.xml <br>
+android/app/src/main/res/values/styles.xml</p>
+<p>修改所有 style 标签，添加以下属性：</p>
+<p>windowNoTitle <br>
+windowFullscreen</p>
+<pre tabindex="0"><code>&lt;style name=&#34;LaunchTheme&#34;&gt;
+    &lt;!-- Show a splash screen on the activity. Automatically removed when
+            the Flutter engine draws its first frame --&gt;
+    &lt;item name=&#34;android:windowNoTitle&#34;&gt;true&lt;/item&gt;
+    &lt;item name=&#34;android:windowFullscreen&#34;&gt;true&lt;/item&gt;
+    &lt;item name=&#34;android:windowBackground&#34;&gt;@drawable/launch_background&lt;/item&gt;
+&lt;/style&gt;
+</code></pre></div>
 
     
     
@@ -177,66 +171,8 @@
 
     
     
-
-    <h4><a href="/blog/post/tfs-%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4/">TFS 常用运维</a></h4>
-    <h5>June 16, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
-
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/ubuntu-%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/">Ubuntu 系统安装与常用配置</a></h4>
-    <h5>June 16, 2022</h5>
-    
-
-
-</div>
-  <div class="item">
-
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/blog/post/windows-%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4/">Windows 系统常用运维</a></h4>
-    <h5>June 16, 2022</h5>
-    
-
-
-</div>
- 
 
 </main>
-
-
-
-<div class="pages">
-
-    
-        <a class="icon pages-icon" href="/blog/post/page/3/" rel="prev">
-            <i class="fa fa-arrow-left"></i>
-        </a>
-    
-
-    
-        <a class="icon pages-icon" href="/blog/post/page/5/" rel="next">
-            <i class="fa fa-arrow-right"></i>
-        </a>
-    
-
-</div>
-
-
 
         <footer>
             <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
