@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://wild-coffee.github.io/blog/post/flutter-android-%E4%BD%BF%E7%94%A8%E5%90%AF%E5%8A%A8-splash-%E9%A1%B5%E9%9D%A2%E9%98%B2%E6%AD%A2%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F/</loc>
-    <lastmod>2022-10-19T00:00:00+00:00</lastmod>
+    <loc>https://wild-coffee.github.io/blog/post/adb-%E9%85%8D%E7%BD%AE-wifi-%E8%B0%83%E8%AF%95/</loc>
+    <lastmod>2022-11-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wild-coffee.github.io/blog/post/</loc>
-    <lastmod>2022-10-19T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wild-coffee.github.io/blog/</loc>
+    <lastmod>2022-11-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wild-coffee.github.io/blog/post/flutter-android-%E4%BD%BF%E7%94%A8%E5%90%AF%E5%8A%A8-splash-%E9%A1%B5%E9%9D%A2%E9%98%B2%E6%AD%A2%E5%90%AF%E5%8A%A8%E7%99%BD%E5%B1%8F/</loc>
     <lastmod>2022-10-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wild-coffee.github.io/blog/post/github-%E4%BD%BF%E7%94%A8-ssh-%E8%AE%A4%E8%AF%81/</loc>

@@ -5,7 +5,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>wild-coffee</title>
+        <title>Adb 配置 Wifi 调试</title>
         
             <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
         
@@ -70,9 +70,6 @@
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
  <meta name="generator" content="Hugo 0.105.0">
         
-            <link href="/blog/index.xml" rel="alternate" type="application/rss&#43;xml" title="wild-coffee" />
-            <link href="/blog/index.xml" rel="feed" type="application/rss&#43;xml" title="wild-coffee" />
-        
 
         
 
@@ -90,7 +87,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">wild-coffee</a>
+                    <a class="navbar-brand visible-xs" href="#">Adb 配置 Wifi 调试</a>
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -136,12 +133,45 @@
 
 
 <main>
-    <div class="intro">
+
+    <div>
+        <h2>Adb 配置 Wifi 调试</h2>
+        <h5>November 1, 2022</h5>
         
-        <h1>wild-coffee</h1>
-        <h2>哪儿路宽往哪儿走！</h2>
-        
+
     </div>
+
+    <div align="start" class="content"><hr>
+<p>在开发调试 Android 程序时我们需要通过 adb 工具在我们的手机和电脑之间建立连接。通常情况下，我们都是使用数据线，但 adb 还提供了另外一种方式：通过 tcpip 建立连接。</p>
+<p>要建立 tcpip 连接，需先用 USB 连接，并配置，配置成功后，即可移除 USB 连接线</p>
+<p>Android Debug Bridge (adb)安卓调试桥，用来管理模拟器或设备。它采用的是C/S模式，主要包括三个部分：</p>
+<ul>
+<li>
+<p>Client 运行在开发电脑上，可以通过 adb 命令 <code>adb start-server</code> 启动 Client</p>
+</li>
+<li>
+<p>Daemon 作为后台程序运行在手机或者模拟器上，使用 5555 到 5585 之间两个连续的端口，其中奇数端口是负责与 adb 链接，偶数端口是负责与控制台链接。服务器端通过扫描 5555 到 5585 之间的奇数端口来寻找模拟器或设备实例并与找到的建立链接</p>
+</li>
+<li>
+<p>Server 作为后台程序运行在开发电脑上，用来管理 Client 和 Daemon 之间的信息交互，使用端口为 5037</p>
+</li>
+</ul>
+<h3 id="配置方法">配置方法</h3>
+<p>先通过 USB 连接上设备，在命令行中运行 <code>adb devices</code> 可查看到物理设备</p>
+<p>启动 Daemon TCP-IP 连接端口（这里选择 5555）</p>
+<pre tabindex="0"><code>adb tcpip 5555 # 返回 restarting in TCP mode port : 5555 时代表成功，不成功可重试
+</code></pre><p>断开 USB 连接线，用 TCP 连接设备</p>
+<pre tabindex="0"><code>adb connect [ip-address]:[port-num] # 返回 connected to [ip-address]:[port-num] 时代表成功，不成功检查 IP 并再次尝试
+</code></pre><p>成功后，再次执行 <code>adb devices</code>，就能看到用 TCP 连接的设备了</p>
+</div>
+
+    
+    
+    
+
+    
+    
+
 </main>
 
         <footer>
