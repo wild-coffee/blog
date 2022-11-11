@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>使用 MediaPipe Android AAR 构建 Android 应用</title>
+        
+            <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
+        
+        <style>
+
+    html body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://wild-coffee.github.io/blog/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.105.0">
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">使用 MediaPipe Android AAR 构建 Android 应用</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/blog/">Home</a></li>
+                            
+                                <li><a href="/blog/csharp">C# .NET</a></li>
+                            
+                                <li><a href="/blog/dart">Dart &amp; Flutter</a></li>
+                            
+                                <li><a href="/blog/python">Python &amp; ML</a></li>
+                            
+                                <li><a href="/blog/manual">工具 &amp; 手册</a></li>
+                            
+                                <li><a href="/blog/notebook">随笔 &amp; 感想</a></li>
+                            
+                                <li><a href="/blog/others">Others</a></li>
+                            
+                                <li><a href="/blog/about">About</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:wild-coffee@foxmail.com"><i class="fas fa-envelope"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/wild-coffee/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/7790729/wild-coffee"><i class="fab fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>使用 MediaPipe Android AAR 构建 Android 应用</h2>
+        <h5>November 8, 2022</h5>
+        
+
+    </div>
+
+    <div align="start" class="content"><hr>
+<h3 id="安装">安装</h3>
+<p><a href="https://google.github.io/mediapipe/getting_started/install.html#installing-on-macos">https://google.github.io/mediapipe/getting_started/install.html#installing-on-macos</a></p>
+<p><a href="https://bazel.build/start/android-app">https://bazel.build/start/android-app</a></p>
+<p>bazel 编译 Android 应用，需要配置 ANDROID_HOME 和 ANDROID_NDK_HOME 环境变量</p>
+<pre tabindex="0"><code>export ANDROID_HOME=&#34;$HOME/Library/Android/sdk&#34;
+export ANDROID_NDK_HOME=&#34;$ANDROID_HOME/ndk/19.2.5345600&#34;
+</code></pre><p>需要注意，编译过程中提示如下错误</p>
+<pre tabindex="0"><code>missing input file &#39;external/androidsdk/build-tools/33.0.0/lib/dx.jar&#39;
+</code></pre><p>则可能与编译工具的版本又关系，bazel 默认使用最新的编译工具（错误使用了 33.0.0 实际需要 30.0.3）</p>
+<p>指定编译工具版本</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://bazel.build/start/android-app">https://bazel.build/start/android-app</a></li>
+<li><a href="https://bazel.build/reference/be/android#android_sdk_repository">https://bazel.build/reference/be/android#android_sdk_repository</a></li>
+</ul>
+<p>修改 WORKSPACE 文件，使用 build_tools_version 指定编译工具版本</p>
+<pre tabindex="0"><code>android_sdk_repository(name = &#34;androidsdk&#34;, build_tools_version = &#34;30.0.3&#34;)
+android_ndk_repository(name = &#34;androidndk&#34;, api_level=21)
+</code></pre><p>bazel 使用的目录带 // 代表从 WORKSPACE 文件所在目录出发</p>
+<h3 id="编译-aar">编译 AAR</h3>
+<p><a href="https://google.github.io/mediapipe/getting_started/android_archive_library.html">https://google.github.io/mediapipe/getting_started/android_archive_library.html</a></p>
+<p>在下载的 MediaPipe 源码目录新建 AAR 目录及项目编译配置文件</p>
+<pre tabindex="0"><code>mediapipe/mediapipe/examples/android/src/java/com/google/mediapipe/apps
+</code></pre><p>以 holistic_tracking 为例（编译 GPU 版本）</p>
+<pre tabindex="0"><code>cd mediapipe/examples/android/src/java/com/google/mediapipe/apps
+mkdir aar_holistic_tracking_gpu
+touch aar_holistic_tracking_gpu/BUILD
+</code></pre><p>BUILD 文件内容为</p>
+<pre tabindex="0"><code>load(&#34;//mediapipe/java/com/google/mediapipe:mediapipe_aar.bzl&#34;, &#34;mediapipe_aar&#34;)
+
+mediapipe_aar(
+    name = &#34;mediapipe_holistic_tracking_gpu&#34;,
+    calculators = [&#34;//mediapipe/graphs/holistic_tracking:holistic_tracking_gpu_deps&#34;],
+)
+</code></pre><p>编译（编译时先回到 bazel 的 WORKSPACE 目录）</p>
+<pre tabindex="0"><code>bazel build -c opt --strip=ALWAYS \
+    --host_crosstool_top=@bazel_tools//tools/cpp:toolchain \
+    --fat_apk_cpu=arm64-v8a,armeabi-v7a \
+    --legacy_whole_archive=0 \
+    --features=-legacy_whole_archive \
+    --copt=-fvisibility=hidden \
+    --copt=-ffunction-sections \
+    --copt=-fdata-sections \
+    --copt=-fstack-protector \
+    --copt=-Oz \
+    --copt=-fomit-frame-pointer \
+    --copt=-DABSL_MIN_LOG_LEVEL=2 \
+    --linkopt=-Wl,--gc-sections,--strip-all \
+    //mediapipe/examples/android/src/java/com/google/mediapipe/apps/aar_holistic_tracking_gpu:mediapipe_holistic_tracking_gpu.aar
+</code></pre><h3 id="编译网络">编译网络</h3>
+<pre tabindex="0"><code>bazel build -c opt mediapipe/graphs/holistic_tracking:holistic_tracking_gpu_binary_graph
+</code></pre><p>编译成功后，会生成 <code>bazel-bin/mediapipe/graphs/holistic_tracking/holistic_tracking_gpu.binarypb</code> 文件</p>
+<h3 id="创建-android-工程并引入-mediapipe">创建 Android 工程，并引入 MediaPipe</h3>
+<p>demo : <a href="https://github.com/jiuqiant/mediapipe_multi_hands_tracking_aar_example">https://github.com/jiuqiant/mediapipe_multi_hands_tracking_aar_example</a></p>
+<ul>
+<li>复制生成的 aar 到 libs 目录</li>
+<li>复制生成的 binarypb 到 assets 目录</li>
+<li>复制下载的模型 .tflite 到 assets 目录</li>
+</ul>
+<p>引入 MediaPipe 依赖，细节参考文档</p>
+<pre tabindex="0"><code>// MediaPipe dependencies
+implementation &#39;com.google.flogger:flogger:latest.release&#39;
+implementation &#39;com.google.flogger:flogger-system-backend:latest.release&#39;
+implementation &#39;com.google.code.findbugs:jsr305:latest.release&#39;
+implementation &#39;com.google.guava:guava:27.0.1-android&#39;
+implementation &#39;com.google.protobuf:protobuf-javalite:3.19.1&#39;
+// CameraX core library
+def camerax_version = &#34;1.0.0-beta10&#34;
+implementation &#34;androidx.camera:camera-core:$camerax_version&#34;
+implementation &#34;androidx.camera:camera-camera2:$camerax_version&#34;
+implementation &#34;androidx.camera:camera-lifecycle:$camerax_version&#34;
+// AutoValue
+def auto_value_version = &#34;1.8.1&#34;
+implementation &#34;com.google.auto.value:auto-value-annotations:$auto_value_version&#34;
+annotationProcessor &#34;com.google.auto.value:auto-value:$auto_value_version&#34;
+// Media aar
+implementation fileTree(dir: &#39;libs&#39;, include: [&#39;mediapipe_holistic_tracking_gpu.aar&#39;])
+</code></pre><p>模型下载地址</p>
+<p><a href="https://google.github.io/mediapipe/solutions/models.html">https://google.github.io/mediapipe/solutions/models.html</a></p>
+<p>*** 这里需要注意的是，如果资源文件缺少（比如缺少 .tflite 文件），则在运行的时候会崩溃</p>
+<p>确定一个网络需要哪些模型文件，有 2 个方法：</p>
+<ul>
+<li>用 bazel 打包 Android example 工程的项目，打包成功后，把 apk 解压，复制 assets 目录</li>
+<li>通过 BUILD 文件，一层一层地找下去，找每层网络使用的 pbtxt 文件，在注释中确认</li>
+</ul>
+<p>比如，这里 holistic 的模型，需要的资源包含：</p>
+<ul>
+<li>face_detection_short_range.tflite</li>
+<li>face_landmark.tflite</li>
+<li>hand_landmark_full.tflite</li>
+<li>hand_landmark_lite.tflite</li>
+<li>hand_recrop.tflite</li>
+<li>handedness.txt</li>
+<li>holistic_tracking_gpu.binarypb</li>
+<li>pose_detection.tflite</li>
+<li>pose_landmark_full.tflite</li>
+</ul>
+<p>注释所在文件为：<code>//mediapipe/graphs/holistic_tracking/holistic_tracking_gpu.pbtxt</code></p>
+<h3 id="使用-mediapipe-处理摄像头数据并显示">使用 MediaPipe 处理摄像头数据并显示</h3>
+<p>教程：<a href="https://google.github.io/mediapipe/getting_started/android.html">https://google.github.io/mediapipe/getting_started/android.html</a></p>
+<p>需注意以下几点</p>
+<h4 id="1设置网络选项的方式">1.设置网络选项的方式</h4>
+<pre tabindex="0"><code>val inputSidePackets: MutableMap&lt;String, Packet&gt; = HashMap()
+inputSidePackets[usePrevLandmarks] = processor.packetCreator.createBool(true)
+processor.setInputSidePackets(inputSidePackets)
+</code></pre><h4 id="2读取模型输出的-landmark">2.读取模型输出的 Landmark</h4>
+<pre tabindex="0"><code># 经测试用这个方法可行
+val m = PacketGetter.getProtoBytes(it)
+var n = NormalizedLandmarkList.parseFrom(m)
+
+# 官方教程的方法，但都崩溃了
+val p = PacketGetter.getProto(it, NormalizedLandmarkList.getDefaultInstance())
+var q = PacketGetter.getProtoVector(it, NormalizedLandmark.parser())
+val r = PacketGetter.getProtoVector(it, NormalizedLandmark.getDefaultInstance())
+</code></pre><h3 id="修改网络">修改网络</h3>
+<p>!!! 修改网络后，一定要重新编译 AAR 和 binarypb</p>
+<p>MediaPipe 就是把一帧数据（图片），按步骤依次处理，直到得到输出，处理过程的节点就是一个一个的算子，算子加工后的数据继续流入到下一个算子，这个处理的行为和名字中的 Pipe 一样，其中处理流程称为 Graph（由 .pbtxt 定义），算子称为 Executor（由 .cc 源码定义）</p>
+<p>通过 <code>.pbtxt</code> 文件来定义处理算子的连接方式，输入输出，运行选项等等</p>
+<p>修改网络就是通过 BUILD 文件作为入口，依次找到整个流程中用到定义的 <code>.pbtxt</code> 文件进行修改</p>
+<p>以 holistic_tracking 为例</p>
+<p>aar_holistic_tracking_gpu 目录中的 BUILD 即入口：</p>
+<pre tabindex="0"><code>name = &#34;mediapipe_holistic_tracking_gpu&#34;
+calculators = [&#34;//mediapipe/graphs/holistic_tracking:holistic_tracking_gpu_deps&#34;]
+</code></pre><p>意思是，把 holistic_tracking_gpu_deps 里面的算子，都打包进最终的 AAR 文件中</p>
+<p>在 //mediapipe/graphs/holistic_tracking 目录的 BUILD 中，可以看到依赖的算子是:</p>
+<pre tabindex="0"><code>cc_library(
+    name = &#34;holistic_tracking_gpu_deps&#34;,
+    deps = [
+        &#34;:holistic_tracking_to_render_data&#34;,
+        &#34;//mediapipe/calculators/core:flow_limiter_calculator&#34;,
+        &#34;//mediapipe/calculators/image:image_properties_calculator&#34;,
+        &#34;//mediapipe/calculators/util:annotation_overlay_calculator&#34;,
+        &#34;//mediapipe/modules/holistic_landmark:holistic_landmark_gpu&#34;,
+    ],
+)
+</code></pre><p>在 //mediapipe/graphs/holistic_tracking 目录中，有 <code>holistic_tracking_gpu.pbtxt</code> 文件即网络配置，中可以看到网络由 2 个子节点组成</p>
+<ul>
+<li>HolisticLandmarkGpu</li>
+<li>HolisticTrackingToRenderData</li>
+</ul>
+<p>在以下文件中可以找到这 2 个网络节点的定义</p>
+<ul>
+<li>//mediapipe/modules/holistic_landmark/holistic_landmark_gpu.pbtxt</li>
+<li>//mediapipe/graphs/holistic_tracking/holistic_tracking_to_render_data.pbtxt</li>
+</ul>
+</div>
+
+    
+    
+    
+
+    
+    
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+

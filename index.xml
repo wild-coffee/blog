@@ -6,22 +6,41 @@
     <description>Recent content on wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Adb 配置 Wifi 调试</title>
-      <link>https://wild-coffee.github.io/blog/post/adb-%E9%85%8D%E7%BD%AE-wifi-%E8%B0%83%E8%AF%95/</link>
+      <title>使用 MediaPipe Android AAR 构建 Android 应用</title>
+      <link>https://wild-coffee.github.io/blog/post/%E4%BD%BF%E7%94%A8-mediapipe-android-aar-%E6%9E%84%E5%BB%BA-android-%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Tue, 08 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/%E4%BD%BF%E7%94%A8-mediapipe-android-aar-%E6%9E%84%E5%BB%BA-android-%E5%BA%94%E7%94%A8/</guid>
+      <description>安装 https://google.github.io/mediapipe/getting_started/install.html#installing-on-macos
+https://bazel.build/start/android-app
+bazel 编译 Android 应用，需要配置 ANDROID_HOME 和 ANDROID_NDK_HOME 环境变量
+export ANDROID_HOME=&amp;#34;$HOME/Library/Android/sdk&amp;#34; export ANDROID_NDK_HOME=&amp;#34;$ANDROID_HOME/ndk/19.2.5345600&amp;#34; 需要注意，编译过程中提示如下错误
+missing input file &amp;#39;external/androidsdk/build-tools/33.0.0/lib/dx.jar&amp;#39; 则可能与编译工具的版本又关系，bazel 默认使用最新的编译工具（错误使用了 33.0.0 实际需要 30.0.3）
+指定编译工具版本
+参考：
+https://bazel.build/start/android-app https://bazel.build/reference/be/android#android_sdk_repository 修改 WORKSPACE 文件，使用 build_tools_version 指定编译工具版本
+android_sdk_repository(name = &amp;#34;androidsdk&amp;#34;, build_tools_version = &amp;#34;30.0.3&amp;#34;) android_ndk_repository(name = &amp;#34;androidndk&amp;#34;, api_level=21) bazel 使用的目录带 // 代表从 WORKSPACE 文件所在目录出发
+编译 AAR https://google.github.io/mediapipe/getting_started/android_archive_library.html
+在下载的 MediaPipe 源码目录新建 AAR 目录及项目编译配置文件
+mediapipe/mediapipe/examples/android/src/java/com/google/mediapipe/apps 以 holistic_tracking 为例（编译 GPU 版本）
+cd mediapipe/examples/android/src/java/com/google/mediapipe/apps mkdir aar_holistic_tracking_gpu touch aar_holistic_tracking_gpu/BUILD BUILD 文件内容为</description>
+    </item>
+    
+    <item>
+      <title>Adb 工具使用</title>
+      <link>https://wild-coffee.github.io/blog/post/adb-%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Tue, 01 Nov 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://wild-coffee.github.io/blog/post/adb-%E9%85%8D%E7%BD%AE-wifi-%E8%B0%83%E8%AF%95/</guid>
-      <description>在开发调试 Android 程序时我们需要通过 adb 工具在我们的手机和电脑之间建立连接。通常情况下，我们都是使用数据线，但 adb 还提供了另外一种方式：通过 tcpip 建立连接。
-要建立 tcpip 连接，需先用 USB 连接，并配置，配置成功后，即可移除 USB 连接线
+      <guid>https://wild-coffee.github.io/blog/post/adb-%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
+      <description>https://developer.android.google.cn/studio/command-line/adb?hl=zh-cn
+Android 开发者关于 adb 的详细介绍👆
 Android Debug Bridge (adb)安卓调试桥，用来管理模拟器或设备。它采用的是C/S模式，主要包括三个部分：
 Client 运行在开发电脑上，可以通过 adb 命令 adb start-server 启动 Client，通过 adb kill-server 停止
 Daemon 作为后台程序运行在手机或者模拟器上，使用 5555 到 5585 之间两个连续的端口，其中奇数端口是负责与 adb 链接，偶数端口是负责与控制台链接。服务器端通过扫描 5555 到 5585 之间的奇数端口来寻找模拟器或设备实例并与找到的建立链接
 Server 作为后台程序运行在开发电脑上，用来管理 Client 和 Daemon 之间的信息交互，使用端口为 5037
-配置方法 先通过 USB 连接上设备，在命令行中运行 adb devices 可查看到物理设备
-启动 Daemon TCP-IP 连接端口（这里选择 5555），并连接设备
-adb tcpip 5555 # 返回 restarting in TCP mode port : 5555 时代表成功，不成功可重试 adb connect [ip-address]:[port-num] # 返回 connected to [ip-address]:[port-num] 时代表成功，不成功检查 IP 并重试 adb devices # 成功后，就能看到用 TCP 连接的设备了 断开 USB 连接线，查看已连接设备</description>
+Adb 常用的操作指令 adb # 查看当前 adb 版本及所有命令帮助 adb devices # 查看设备列表 adb install */.../*.apk # 安装软件 adb start-server # 启动 adb kill-server # 停止 adb shell # 进入设备终端 配置WIFI 连接调试 在开发调试 Android 程序时我们需要通过 adb 工具在我们的手机和电脑之间建立连接。通常情况下，我们都是使用数据线，但 adb 还提供了另外一种方式：通过 tcpip 建立连接。</description>
     </item>
     
     <item>
@@ -256,11 +275,11 @@ Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中�
     
     <item>
       <title>快捷键与命令</title>
-      <link>https://wild-coffee.github.io/blog/post/%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</link>
+      <link>https://wild-coffee.github.io/blog/post/%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
       <pubDate>Fri, 17 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://wild-coffee.github.io/blog/post/%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</guid>
-      <description>Visual studio 2019 调试模式下，快速回到当前代码行：Alt + * 查看定义：F12 查看所有引用：Shift + F12 查看所有实现：Ctrl + F12 退回：Ctrl + -（P 键上方的减键） 前进：Ctrl + Shift + -（P 键上方的减） 列选中模式：Alt + Shift + Up/Down 复制当前行并粘贴到下一行：Ctrl + D 剪切当前行：Shift + Delete 连续选中：Shift + Left/Right 连续快速选中：Ctrl + Shift + Left/Right 快速左右移动光标：Ctrl + Left/Right 行内容交换：Alt + Up/Down Visual studio code（Windows） 查看定义：F12 查看所有引用：Shift + F12 查看所有实现：Ctrl + F12 退回：Alt + Left 前进：Alt + Right 列选中模式：Alt + Shift + 鼠标左键选择范围 行内容交换：Alt + Up/Down 复制当前行并粘贴到下一行：Alt + Shift + Up/Down 命令：Ctrl + Shift + P 剪切当前行：Shift + Delete Visual studio code（Mac） Ubuntu｜Debian 打开终端：ctrl + alt + T 终端全屏：F11 新建当前同路径的终端（新窗口）：ctrl + shift + N 再开一个当前同路径终端（新标签）：ctrl + shift + T 打开所有软件：supper + A Windows Edg（Mac） 查找：command + F 下一个目标（向下查找）：command + G 上一个目标（向上查找）：command + shift + G 选中 URL：command + L 打开下载目录：command + option + L 打开新窗口：command + N 关闭窗口：command + shift + W 在当前 TAB 页打开 home 地址：command + shift + H 打开新 TAB 页：command + T 关闭 TAB 页：command + W 用 Edg 打开文件：command + O 刷新：command + R 前进：command + ] 后退：command + [ 下一个 TAB 页：ctrl + tab 上一个 TAB 页：ctrl + shift + tab Adb 设置横竖屏</description>
+      <guid>https://wild-coffee.github.io/blog/post/%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid>
+      <description> Edg（Mac） 查找：command + F 下一个目标（向下查找）：command + G 上一个目标（向上查找）：command + shift + G 选中 URL：command + L 打开下载目录：command + option + L 打开新窗口：command + N 关闭窗口：command + shift + W 在当前 TAB 页打开 home 地址：command + shift + H 打开新 TAB 页：command + T 关闭 TAB 页：command + W 用 Edg 打开文件：command + O 刷新：command + R 前进：command + ] 后退：command + [ 下一个 TAB 页：ctrl + tab 上一个 TAB 页：ctrl + shift + tab Visual studio 2019 调试模式下，快速回到当前代码行：Alt + * 查看定义：F12 查看所有引用：Shift + F12 查看所有实现：Ctrl + F12 退回：Ctrl + -（P 键上方的减键） 前进：Ctrl + Shift + -（P 键上方的减） 列选中模式：Alt + Shift + Up/Down 复制当前行并粘贴到下一行：Ctrl + D 剪切当前行：Shift + Delete 连续选中：Shift + Left/Right 连续快速选中：Ctrl + Shift + Left/Right 快速左右移动光标：Ctrl + Left/Right 行内容交换：Alt + Up/Down Visual studio code（Windows） 查看定义：F12 查看所有引用：Shift + F12 查看所有实现：Ctrl + F12 退回：Alt + Left 前进：Alt + Right 列选中模式：Alt + Shift + 鼠标左键选择范围 行内容交换：Alt + Up/Down 复制当前行并粘贴到下一行：Alt + Shift + Up/Down 命令：Ctrl + Shift + P 剪切当前行：Shift + Delete Visual studio code（Mac） Android studio（Mac） 格式化代码：Alt + Shift + F 删除一行：Command + Shift + K Ubuntu｜Debian 打开终端：ctrl + alt + T 终端全屏：F11 新建当前同路径的终端（新窗口）：ctrl + shift + N 再开一个当前同路径终端（新标签）：ctrl + shift + T 打开所有软件：supper + A Windows </description>
     </item>
     
     <item>
@@ -296,9 +315,10 @@ Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中�
       <pubDate>Thu, 16 Jun 2022 16:50:31 +0800</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/manual/</guid>
-      <description>[2022-10-11] github 使用 ssh 认证
+      <description>[2022-11-01] Adb 工具使用
+[2022-10-11] github 使用 ssh 认证
 [2022-06-16] GIT 常用命令
-[2022-06-17] 快捷键与命令
+[2022-06-17] 快捷键
 [2022-06-16] Windows 系统常用运维
 [2022-06-16] Ubuntu 系统安装与常用配置
 [2022-06-16] TFS 常用运维
@@ -313,7 +333,7 @@ Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中�
       <pubDate>Thu, 16 Jun 2022 16:50:19 +0800</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/dart/</guid>
-      <description>[2022-11-01] Adb 配置 Wifi 调试
+      <description>[2022-11-08] 使用 MediaPipe Android AAR 构建 Android 应用
 [2022-10-19] Flutter Android 使用启动 Splash 页面防止启动白屏
 [2022-10-11] 使用 fataar 给 aar 嵌入第三方库
 [2022-07-12] Android 集成百度离线人脸识别
