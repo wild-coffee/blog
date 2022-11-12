@@ -173,7 +173,7 @@ touch aar_holistic_tracking_gpu/BUILD
 <pre tabindex="0"><code>load(&#34;//mediapipe/java/com/google/mediapipe:mediapipe_aar.bzl&#34;, &#34;mediapipe_aar&#34;)
 
 mediapipe_aar(
-    name = &#34;mediapipe_holistic_tracking_gpu&#34;,
+    name = &#34;holistic_tracking_gpu&#34;,
     calculators = [&#34;//mediapipe/graphs/holistic_tracking:holistic_tracking_gpu_deps&#34;],
 )
 </code></pre><p>编译（编译时先回到 bazel 的 WORKSPACE 目录）</p>
@@ -192,7 +192,7 @@ mediapipe_aar(
     --linkopt=-Wl,--gc-sections,--strip-all \
     //mediapipe/examples/android/src/java/com/google/mediapipe/apps/aar_holistic_tracking_gpu:mediapipe_holistic_tracking_gpu.aar
 </code></pre><h3 id="编译网络">编译网络</h3>
-<pre tabindex="0"><code>bazel build -c opt mediapipe/graphs/holistic_tracking:holistic_tracking_gpu_binary_graph
+<pre tabindex="0"><code>bazel build -c opt mediapipe/graphs/holistic_tracking:holistic_tracking_gpu
 </code></pre><p>编译成功后，会生成 <code>bazel-bin/mediapipe/graphs/holistic_tracking/holistic_tracking_gpu.binarypb</code> 文件</p>
 <h3 id="创建-android-工程并引入-mediapipe">创建 Android 工程，并引入 MediaPipe</h3>
 <p>demo : <a href="https://github.com/jiuqiant/mediapipe_multi_hands_tracking_aar_example">https://github.com/jiuqiant/mediapipe_multi_hands_tracking_aar_example</a></p>
@@ -257,13 +257,13 @@ val p = PacketGetter.getProto(it, NormalizedLandmarkList.getDefaultInstance())
 var q = PacketGetter.getProtoVector(it, NormalizedLandmark.parser())
 val r = PacketGetter.getProtoVector(it, NormalizedLandmark.getDefaultInstance())
 </code></pre><h3 id="修改网络">修改网络</h3>
-<p>!!! 修改网络后，一定要重新编译 AAR 和 binarypb</p>
+<p>!!! 修改网络后，一定要重新编译 AAR 和 binarypb，检查更新时间决定是否更换</p>
 <p>MediaPipe 就是把一帧数据（图片），按步骤依次处理，直到得到输出，处理过程的节点就是一个一个的算子，算子加工后的数据继续流入到下一个算子，这个处理的行为和名字中的 Pipe 一样，其中处理流程称为 Graph（由 .pbtxt 定义），算子称为 Executor（由 .cc 源码定义）</p>
 <p>通过 <code>.pbtxt</code> 文件来定义处理算子的连接方式，输入输出，运行选项等等</p>
 <p>修改网络就是通过 BUILD 文件作为入口，依次找到整个流程中用到定义的 <code>.pbtxt</code> 文件进行修改</p>
 <p>以 holistic_tracking 为例</p>
 <p>aar_holistic_tracking_gpu 目录中的 BUILD 即入口：</p>
-<pre tabindex="0"><code>name = &#34;mediapipe_holistic_tracking_gpu&#34;
+<pre tabindex="0"><code>name = &#34;holistic_tracking_gpu&#34;
 calculators = [&#34;//mediapipe/graphs/holistic_tracking:holistic_tracking_gpu_deps&#34;]
 </code></pre><p>意思是，把 holistic_tracking_gpu_deps 里面的算子，都打包进最终的 AAR 文件中</p>
 <p>在 //mediapipe/graphs/holistic_tracking 目录的 BUILD 中，可以看到依赖的算子是:</p>
@@ -287,7 +287,37 @@ calculators = [&#34;//mediapipe/graphs/holistic_tracking:holistic_tracking_gpu_d
 <li>//mediapipe/modules/holistic_landmark/holistic_landmark_gpu.pbtxt</li>
 <li>//mediapipe/graphs/holistic_tracking/holistic_tracking_to_render_data.pbtxt</li>
 </ul>
-</div>
+<h3 id="调试技巧">调试技巧</h3>
+<p>程序运行起来崩溃，一般是资源问题，依次检查 pbtxt 文件，注意嵌套的 pbtxt，把所有依赖都补上</p>
+<p>程序运行起来不崩溃，但报错，尤其是提示输入类型不匹配等，又无法定位是哪一个算子出问题了，这个时候可以采用逐步检查的方式来排查问题</p>
+<p>具体就是，注释掉 pbtxt 中的所有模型，然后依次添加 node（取消注释），重新生成 binarypb 文件，再调试</p>
+<p>这个方法很笨，但在实在无法找到问题时，可能是唯一有效的办法</p>
+<h3 id="cpu-和-gpu">CPU 和 GPU</h3>
+<p>以 holistic 为例，源码里并没有提供 CPU 的配置，需要手动创建，可以参考 FaceDetection 来制作</p>
+<p>其中的关键点是：</p>
+<ul>
+<li>在 FlowLimiterCalculator 节点后，添加 GpuBufferToImageFrame 算子</li>
+<li>在返回 output_video 前，添加 ImageFrameToGpuBuffer 算子</li>
+<li>凡是输入参数类型是 IMAGE 的地方，均得换成转换后的输出流</li>
+</ul>
+<p>以 holistic 为例，转换为 CPU 时，以下 node 均需要更换： HolisticLandmarkCpu、ImagePropertiesCalculator、AnnotationOverlayCalculator</p>
+<pre tabindex="0"><code># Transfers the input image from GPU to CPU memory for the purpose of
+# demonstrating a CPU-based pipeline. Note that the input image on GPU has the
+# origin defined at the bottom-left corner (OpenGL convention). As a result,
+# the transferred image on CPU also shares the same representation.
+node: {
+  calculator: &#34;GpuBufferToImageFrameCalculator&#34;
+  input_stream: &#34;throttled_input_video&#34;
+  output_stream: &#34;input_video_cpu&#34;
+}
+</code></pre><pre tabindex="0"><code># Transfers the annotated image from CPU back to GPU memory, to be sent out of
+# the graph.
+node: {
+  calculator: &#34;ImageFrameToGpuBufferCalculator&#34;
+  input_stream: &#34;output_video_cpu&#34;
+  output_stream: &#34;output_video&#34;
+}
+</code></pre></div>
 
     
     
