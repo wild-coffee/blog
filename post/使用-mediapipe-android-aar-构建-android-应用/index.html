@@ -190,7 +190,7 @@ mediapipe_aar(
     --copt=-fomit-frame-pointer \
     --copt=-DABSL_MIN_LOG_LEVEL=2 \
     --linkopt=-Wl,--gc-sections,--strip-all \
-    //mediapipe/examples/android/src/java/com/google/mediapipe/apps/aar_holistic_tracking_gpu:mediapipe_holistic_tracking_gpu.aar
+    //mediapipe/examples/android/src/java/com/google/mediapipe/apps/aar_holistic_tracking_gpu:holistic_tracking_gpu.aar
 </code></pre><h3 id="编译网络">编译网络</h3>
 <pre tabindex="0"><code>bazel build -c opt mediapipe/graphs/holistic_tracking:holistic_tracking_gpu
 </code></pre><p>编译成功后，会生成 <code>bazel-bin/mediapipe/graphs/holistic_tracking/holistic_tracking_gpu.binarypb</code> 文件</p>
