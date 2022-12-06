@@ -68,7 +68,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.105.0">
+ <meta name="generator" content="Hugo 0.106.0">
         
 
         
@@ -161,7 +161,10 @@ export ANDROID_NDK_HOME=&#34;$ANDROID_HOME/ndk/19.2.5345600&#34;
 <pre tabindex="0"><code>android_sdk_repository(name = &#34;androidsdk&#34;, build_tools_version = &#34;30.0.3&#34;)
 android_ndk_repository(name = &#34;androidndk&#34;, api_level=21)
 </code></pre><p>bazel 使用的目录带 // 代表从 WORKSPACE 文件所在目录出发</p>
-<h3 id="编译-aar">编译 AAR</h3>
+<p>值得注意的是，这个修改会影响 iOS，在使用 Tulsi 生成 XCode 项目时会报错，在生成前，需要手动删除这 2 句，再生成即可</p>
+<pre tabindex="0"><code>ERROR: /Users/alan/source/src/mediapipe/WORKSPACE:507:23: fetching android_ndk_repository rule //external:androidndk: Either the path attribute of android_ndk_repository or the ANDROID_NDK_HOME environment variable must be set.
+ERROR: Analysis of target &#39;//mediapipe/objc:mediapipe_framework_ios&#39; failed; build aborted: Either the path attribute of android_ndk_repository or the ANDROID_NDK_HOME environment variable must be set.
+</code></pre><h3 id="编译-aar">编译 AAR</h3>
 <p><a href="https://google.github.io/mediapipe/getting_started/android_archive_library.html">https://google.github.io/mediapipe/getting_started/android_archive_library.html</a></p>
 <p>在下载的 MediaPipe 源码目录新建 AAR 目录及项目编译配置文件</p>
 <pre tabindex="0"><code>mediapipe/mediapipe/examples/android/src/java/com/google/mediapipe/apps

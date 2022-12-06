@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>JNI C&#43;&#43; 回调 JAVA 函数</title>
+        
+            <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
+        
+        <style>
+
+    html body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://wild-coffee.github.io/blog/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.106.0">
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">JNI C&#43;&#43; 回调 JAVA 函数</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/blog/">Home</a></li>
+                            
+                                <li><a href="/blog/csharp">C# .NET</a></li>
+                            
+                                <li><a href="/blog/dart">Dart &amp; Flutter</a></li>
+                            
+                                <li><a href="/blog/python">Python &amp; ML</a></li>
+                            
+                                <li><a href="/blog/manual">工具 &amp; 手册</a></li>
+                            
+                                <li><a href="/blog/notebook">随笔 &amp; 感想</a></li>
+                            
+                                <li><a href="/blog/others">Others</a></li>
+                            
+                                <li><a href="/blog/about">About</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:wild-coffee@foxmail.com"><i class="fas fa-envelope"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/wild-coffee/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/7790729/wild-coffee"><i class="fab fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>JNI C&#43;&#43; 回调 JAVA 函数</h2>
+        <h5>December 5, 2022</h5>
+        
+
+    </div>
+
+    <div align="start" class="content"><hr>
+<h3 id="定义回调接口">定义回调接口</h3>
+<p>在 Android Native Library 的项目中，创建回调接口定义 FrameListener.kt</p>
+<pre tabindex="0"><code>interface FrameListener {
+    /**
+     * the callback(interface) of model output
+     * frameTimeStamp: frame time
+     * frameDatas: float[17 * 3]
+     *     num_points * (x, y, score)
+     */
+    fun onFrameReceived(frameTimeStamp: Long, frameDatas: FloatArray)
+}
+</code></pre><h3 id="创建-jni-库函数参数为回调接口对象">创建 JNI 库函数，参数为回调接口对象</h3>
+<pre tabindex="0"><code>external fun startCollect(frameListener: FrameListener): Boolean
+external fun stopCollect(): Boolean
+</code></pre><h3 id="启动-jni保存回调接口和方法">启动 JNI，保存回调接口和方法</h3>
+<pre tabindex="0"><code>static JavaVM *g_jvm = nullptr;
+static jobject g_frameListener = nullptr;
+static jclass g_class_FrameListener = nullptr;
+static jmethodID g_method_onFrameReceived = nullptr;
+
+static jint getEnv(JavaVM *jvm, JNIEnv **env) {
+    if (jvm == nullptr || env == nullptr) {
+        return JNI_EINVAL;
+    }
+
+    jint status = jvm-&gt;GetEnv((void **) env, JNI_VERSION_1_6);
+    if (status != JNI_OK) {
+        __android_log_print(ANDROID_LOG_ERROR, &#34;ncnn&#34;, &#34;GetEnv failed: %d!&#34;,
+                            status);
+    }
+
+    return status;
+}
+
+static jint load_class(JavaVM *jvm) {
+    const char *class_name = &#34;com/tablefocus/movenet/FrameListener&#34;;
+    const char *method_name = &#34;onFrameReceived&#34;;
+    const char *method_sign = &#34;(J[F)V&#34;;
+
+    if (jvm == nullptr) {
+        return JNI_EINVAL;
+    }
+
+    bool attach = false;
+    jint status = JNI_OK;
+    JNIEnv *env = nullptr;
+    status = getEnv(jvm, &amp;env);
+    if (status != JNI_OK) {
+        if (status == JNI_EDETACHED) {
+            status = jvm-&gt;AttachCurrentThread(&amp;env, nullptr);
+            attach = status == JNI_OK;
+
+            if (status != JNI_OK) {
+                __android_log_print(ANDROID_LOG_ERROR, &#34;ncnn&#34;, &#34;AttachCurrentThread failed: %d!&#34;,
+                                    status);
+            }
+        }
+    }
+    status = status != JNI_OK ? status : (env != nullptr ? JNI_OK : JNI_ERR);
+    if (status != JNI_OK) {
+        goto ERROR_LABEL;
+    }
+
+    g_class_FrameListener = env-&gt;FindClass(class_name);
+    if (g_class_FrameListener == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, &#34;ncnn&#34;, &#34;FindClass failed: %s!&#34;,
+                            class_name);
+        status = JNI_ERR;
+        goto ERROR_LABEL;
+    }
+
+    g_method_onFrameReceived = env-&gt;GetMethodID(
+            g_class_FrameListener,
+            method_name,
+            method_sign);
+
+    if (g_method_onFrameReceived == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, &#34;ncnn&#34;,
+                            &#34;GetMethodID failed: class = %s, name = %s, sign = %s!&#34;,
+                            class_name, method_name, method_sign);
+        status = JNI_ERR;
+        goto ERROR_LABEL;
+    }
+
+    if (attach) {
+        status = jvm-&gt;DetachCurrentThread();
+        attach = false;
+
+        if (status != JNI_OK) {
+            __android_log_print(ANDROID_LOG_ERROR, &#34;ncnn&#34;, &#34;DetachCurrentThread failed: %d!&#34;,
+                                status);
+
+            goto ERROR_LABEL;
+        }
+    }
+
+    return status;
+
+    ERROR_LABEL:
+    if (attach) {
+        jint detachStatus = jvm-&gt;DetachCurrentThread();
+        if (detachStatus != JNI_OK) {
+            __android_log_print(ANDROID_LOG_ERROR, &#34;ncnn&#34;, &#34;DetachCurrentThread failed: %d!&#34;,
+                                detachStatus);
+        }
+    }
+    return status;
+}
+
+JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
+    __android_log_print(ANDROID_LOG_DEBUG, &#34;ncnn&#34;, &#34;JNI_OnLoad&#34;);
+
+    load_class(vm);
+    g_jvm = vm;
+
+    return JNI_VERSION_1_6;
+}
+
+JNIEXPORT void JNI_OnUnload(JavaVM *vm, void *reserved) {
+    __android_log_print(ANDROID_LOG_DEBUG, &#34;ncnn&#34;, &#34;JNI_OnUnload&#34;);
+
+    if (g_frameListener != nullptr) {
+        JNIEnv *env = nullptr;
+        jint status = getEnv(vm, &amp;env);
+        if (status == JNI_OK &amp;&amp; env != nullptr) {
+            env-&gt;DeleteGlobalRef(g_frameListener);
+            g_frameListener = nullptr;
+        }
+    }
+
+    g_method_onFrameReceived = nullptr;
+    g_class_FrameListener = nullptr;
+    g_jvm = nullptr;
+}
+</code></pre><h3 id="jni-中实现库函数">JNI 中实现库函数</h3>
+<pre tabindex="0"><code>extern &#34;C&#34;
+JNIEXPORT jboolean JNICALL
+Java_com_tablefocus_movenet_MovenetLib_startCollect(JNIEnv *env, jobject thiz,
+                                                   jobject frame_listener) {
+    __android_log_print(ANDROID_LOG_DEBUG, &#34;ncnn&#34;, &#34;startCollect&#34;);
+
+    if (g_frameListener != nullptr) {
+        env-&gt;DeleteGlobalRef(g_frameListener);
+        g_frameListener = nullptr;
+    }
+
+    g_frameListener = env-&gt;NewGlobalRef(frame_listener);
+
+    return JNI_OK;
+}
+extern &#34;C&#34;
+JNIEXPORT jboolean JNICALL
+Java_com_tablefocus_movenet_MovenetLib_stopCollect(JNIEnv *env, jobject thiz) {
+    __android_log_print(ANDROID_LOG_DEBUG, &#34;ncnn&#34;, &#34;stopCollect&#34;);
+
+    if (g_frameListener != nullptr) {
+        env-&gt;DeleteGlobalRef(g_frameListener);
+        g_frameListener = nullptr;
+    }
+
+    return JNI_OK;
+}
+</code></pre><h3 id="c-调用回调">C++ 调用回调</h3>
+<pre tabindex="0"><code>static jint call_listener_method(JNIEnv *env, float *frameData, int length) {
+    if (g_frameListener == nullptr || g_method_onFrameReceived == nullptr) {
+        return JNI_EINVAL;
+    }
+    if (env == nullptr || frameData == nullptr || length &lt;= 0) {
+        return JNI_EINVAL;
+    }
+
+    std::chrono::milliseconds ms =
+            std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(
+                    std::chrono::system_clock::now().time_since_epoch()
+            );
+    jlong methodP1 = ms.count();
+    jfloatArray methodP2 = env-&gt;NewFloatArray(length);
+    env-&gt;SetFloatArrayRegion(methodP2, 0, length, frameData);
+
+    env-&gt;CallVoidMethod(
+            g_frameListener,
+            g_method_onFrameReceived, methodP1, methodP2);
+
+    env-&gt;DeleteLocalRef(methodP2);
+
+    return JNI_OK;
+}
+</code></pre></div>
+
+    
+    
+    
+
+    
+    
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">wild-coffee © All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+

@@ -6,7 +6,17 @@
     <description>Recent content on wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JNI C&#43;&#43; 回调 JAVA 函数</title>
+      <link>https://wild-coffee.github.io/blog/post/jni-c&#43;&#43;-%E5%9B%9E%E8%B0%83-java-%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Mon, 05 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/jni-c&#43;&#43;-%E5%9B%9E%E8%B0%83-java-%E5%87%BD%E6%95%B0/</guid>
+      <description>定义回调接口 在 Android Native Library 的项目中，创建回调接口定义 FrameListener.kt
+interface FrameListener { /** * the callback(interface) of model output * frameTimeStamp: frame time * frameDatas: float[17 * 3] * num_points * (x, y, score) */ fun onFrameReceived(frameTimeStamp: Long, frameDatas: FloatArray) } 创建 JNI 库函数，参数为回调接口对象 external fun startCollect(frameListener: FrameListener): Boolean external fun stopCollect(): Boolean 启动 JNI，保存回调接口和方法 static JavaVM *g_jvm = nullptr; static jobject g_frameListener = nullptr; static jclass g_class_FrameListener = nullptr; static jmethodID g_method_onFrameReceived = nullptr; static jint getEnv(JavaVM *jvm, JNIEnv **env) { if (jvm == nullptr || env == nullptr) { return JNI_EINVAL; } jint status = jvm-&amp;gt;GetEnv((void **) env, JNI_VERSION_1_6); if (status !</description>
+    </item>
+    
     <item>
       <title>使用 MediaPipe Android AAR 构建 Android 应用</title>
       <link>https://wild-coffee.github.io/blog/post/%E4%BD%BF%E7%94%A8-mediapipe-android-aar-%E6%9E%84%E5%BB%BA-android-%E5%BA%94%E7%94%A8/</link>
@@ -22,10 +32,8 @@ missing input file &amp;#39;external/androidsdk/build-tools/33.0.0/lib/dx.jar&am
 参考：
 https://bazel.build/start/android-app https://bazel.build/reference/be/android#android_sdk_repository 修改 WORKSPACE 文件，使用 build_tools_version 指定编译工具版本
 android_sdk_repository(name = &amp;#34;androidsdk&amp;#34;, build_tools_version = &amp;#34;30.0.3&amp;#34;) android_ndk_repository(name = &amp;#34;androidndk&amp;#34;, api_level=21) bazel 使用的目录带 // 代表从 WORKSPACE 文件所在目录出发
-编译 AAR https://google.github.io/mediapipe/getting_started/android_archive_library.html
-在下载的 MediaPipe 源码目录新建 AAR 目录及项目编译配置文件
-mediapipe/mediapipe/examples/android/src/java/com/google/mediapipe/apps 以 holistic_tracking 为例（编译 GPU 版本）
-cd mediapipe/examples/android/src/java/com/google/mediapipe/apps mkdir aar_holistic_tracking_gpu touch aar_holistic_tracking_gpu/BUILD BUILD 文件内容为</description>
+值得注意的是，这个修改会影响 iOS，在使用 Tulsi 生成 XCode 项目时会报错，在生成前，需要手动删除这 2 句，再生成即可
+ERROR: /Users/alan/source/src/mediapipe/WORKSPACE:507:23: fetching android_ndk_repository rule //external:androidndk: Either the path attribute of android_ndk_repository or the ANDROID_NDK_HOME environment variable must be set.</description>
     </item>
     
     <item>
@@ -333,7 +341,8 @@ Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中�
       <pubDate>Thu, 16 Jun 2022 16:50:19 +0800</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/dart/</guid>
-      <description>[2022-11-08] 使用 MediaPipe Android AAR 构建 Android 应用
+      <description>[2022-12-05] JNI C++ 回调 JAVA 函数
+[2022-11-08] 使用 MediaPipe Android AAR 构建 Android 应用
 [2022-10-19] Flutter Android 使用启动 Splash 页面防止启动白屏
 [2022-10-11] 使用 fataar 给 aar 嵌入第三方库
 [2022-07-12] Android 集成百度离线人脸识别
@@ -344,8 +353,7 @@ Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中�
 [2022-06-20] flutter 插件之 flutter_tts - 合成声音
 [2022-06-20] 预览所有 MaterialApp Icon
 [2022-06-20] Flutter 修改应用程序名字和图标
-[2022-06-20] 使用 FVM 管理多个版本的 Flutter
-[2022-06-20] Flutter 安装及环境配置</description>
+[2022-06-20] 使用 FVM 管理多个版本的 Flutter</description>
     </item>
     
     <item>
