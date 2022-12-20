@@ -68,7 +68,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.106.0">
+ <meta name="generator" content="Hugo 0.108.0">
         
 
         
@@ -146,9 +146,7 @@
 <p><a href="https://google.github.io/mediapipe/getting_started/install.html#installing-on-macos">https://google.github.io/mediapipe/getting_started/install.html#installing-on-macos</a></p>
 <p><a href="https://bazel.build/start/android-app">https://bazel.build/start/android-app</a></p>
 <p>bazel 编译 Android 应用，需要配置 ANDROID_HOME 和 ANDROID_NDK_HOME 环境变量</p>
-<pre tabindex="0"><code>export ANDROID_HOME=&#34;$HOME/Library/Android/sdk&#34;
-export ANDROID_NDK_HOME=&#34;$ANDROID_HOME/ndk/19.2.5345600&#34;
-</code></pre><p>需要注意，编译过程中提示如下错误</p>
+<p>需要注意，编译过程中提示如下错误</p>
 <pre tabindex="0"><code>missing input file &#39;external/androidsdk/build-tools/33.0.0/lib/dx.jar&#39;
 </code></pre><p>则可能与编译工具的版本又关系，bazel 默认使用最新的编译工具（错误使用了 33.0.0 实际需要 30.0.3）</p>
 <p>指定编译工具版本</p>
@@ -194,7 +192,8 @@ mediapipe_aar(
     --copt=-DABSL_MIN_LOG_LEVEL=2 \
     --linkopt=-Wl,--gc-sections,--strip-all \
     //mediapipe/examples/android/src/java/com/google/mediapipe/apps/aar_holistic_tracking_gpu:holistic_tracking_gpu.aar
-</code></pre><h3 id="编译网络">编译网络</h3>
+</code></pre><p>需要注意的是，编译 AAR 需要编译的对象在 BUILD 目标类型是 <code>cc_library</code>，而编译网络是 <code>mediapipe_binary_graph</code>，如果使用错了目标类型，则会报类似于 <code>fatal error: 'EGL/egl.h' file not found</code> 等等奇怪的错误！</p>
+<h3 id="编译网络">编译网络</h3>
 <pre tabindex="0"><code>bazel build -c opt mediapipe/graphs/holistic_tracking:holistic_tracking_gpu
 </code></pre><p>编译成功后，会生成 <code>bazel-bin/mediapipe/graphs/holistic_tracking/holistic_tracking_gpu.binarypb</code> 文件</p>
 <h3 id="创建-android-工程并引入-mediapipe">创建 Android 工程，并引入 MediaPipe</h3>
@@ -296,12 +295,15 @@ calculators = [&#34;//mediapipe/graphs/holistic_tracking:holistic_tracking_gpu_d
 <p>具体就是，注释掉 pbtxt 中的所有模型，然后依次添加 node（取消注释），重新生成 binarypb 文件，再调试</p>
 <p>这个方法很笨，但在实在无法找到问题时，可能是唯一有效的办法</p>
 <h3 id="cpu-和-gpu">CPU 和 GPU</h3>
-<p>以 holistic 为例，源码里并没有提供 CPU 的配置，需要手动创建，可以参考 FaceDetection 来制作</p>
+<p>如果 graph 中支持 CPU 模型，而编译后运行报以下错误：</p>
+<pre tabindex="0"><code>com.google.mediapipe.framework.MediaPipeException: unknown: Input stream &#34;output_video&#34; of calculator &#34;egl_surface_sink_output_video&#34; expects packets of type &#34;OneOf&lt;::mediapipe::Image, mediapipe::GpuBuffer&gt;&#34; but the connected output stream will contain packets of type &#34;mediapipe::ImageFrame&#34;
+</code></pre><p>则需要添加转换，以 holistic 为例，源码里并没有提供 CPU 的配置，需要手动创建，可以参考 FaceDetection 来制作</p>
 <p>其中的关键点是：</p>
 <ul>
-<li>在 FlowLimiterCalculator 节点后，添加 GpuBufferToImageFrame 算子</li>
+<li>在 FlowLimiterCalculator 节点之后，添加 GpuBufferToImageFrame 算子</li>
 <li>在返回 output_video 前，添加 ImageFrameToGpuBuffer 算子</li>
 <li>凡是输入参数类型是 IMAGE 的地方，均得换成转换后的输出流</li>
+<li>在 aar depends BUILD 文件添加 GPUBuffer 和 ImageFrame 转换算子依赖</li>
 </ul>
 <p>以 holistic 为例，转换为 CPU 时，以下 node 均需要更换： HolisticLandmarkCpu、ImagePropertiesCalculator、AnnotationOverlayCalculator</p>
 <pre tabindex="0"><code># Transfers the input image from GPU to CPU memory for the purpose of
@@ -320,6 +322,9 @@ node: {
   input_stream: &#34;output_video_cpu&#34;
   output_stream: &#34;output_video&#34;
 }
+</code></pre><p>BUILD 添加依赖如下</p>
+<pre tabindex="0"><code>&#34;//mediapipe/gpu:gpu_buffer_to_image_frame_calculator&#34;,
+&#34;//mediapipe/gpu:image_frame_to_gpu_buffer_calculator&#34;,
 </code></pre></div>
 
     

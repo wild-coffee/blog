@@ -26,7 +26,7 @@ interface FrameListener { /** * the callback(interface) of model output * frameT
       <description>安装 https://google.github.io/mediapipe/getting_started/install.html#installing-on-macos
 https://bazel.build/start/android-app
 bazel 编译 Android 应用，需要配置 ANDROID_HOME 和 ANDROID_NDK_HOME 环境变量
-export ANDROID_HOME=&amp;#34;$HOME/Library/Android/sdk&amp;#34; export ANDROID_NDK_HOME=&amp;#34;$ANDROID_HOME/ndk/19.2.5345600&amp;#34; 需要注意，编译过程中提示如下错误
+需要注意，编译过程中提示如下错误
 missing input file &amp;#39;external/androidsdk/build-tools/33.0.0/lib/dx.jar&amp;#39; 则可能与编译工具的版本又关系，bazel 默认使用最新的编译工具（错误使用了 33.0.0 实际需要 30.0.3）
 指定编译工具版本
 参考：
