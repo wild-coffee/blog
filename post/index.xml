@@ -6,7 +6,20 @@
     <description>Recent content in Posts on wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Protoc 生成 Dart 语言代码</title>
+      <link>https://wild-coffee.github.io/blog/post/protoc-%E7%94%9F%E6%88%90-dart-%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81/</link>
+      <pubDate>Mon, 20 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/protoc-%E7%94%9F%E6%88%90-dart-%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81/</guid>
+      <description>protobuf 生成 dart 代码，参考官方文档： https://protobuf.dev/reference/dart/dart-generated/
+需要安装 dart 插件，插件官方地址： https://github.com/dart-archive/dart-protoc-plugin
+使用命令行安装插件 dart pub global activate protoc_plugin 在 .zshrc 文件中配置 dart export PUB_CACHE=&amp;#34;$HOME/.pub-cache&amp;#34; export PATH=&amp;#34;$PATH&amp;#34;:&amp;#34;$PUB_CACHE/bin&amp;#34; 生成 dart 代码 先通过命令行，进入要生成文件保存的路径（主要是方便），然后执行 protoc 命令生成代码
+protoc --dart_out=. /Users/xxxx/source/src/landmark.proto -I /Users/xxxx/source/src # 命令说明: # protoc : 命令 # --dart_out=. : dart 代码输出路径为当前目录 # *.proto : 为原始 `.proto` 配置文件 # -I : 后面参数指定 `.proto` 文件所在目录 其他说明 在 dart 项目中，使用 protobuf 插件接入，插件地址： https://pub.dev/packages/protobuf
+dart 结合 protocol、EventChannel，可用于在原生和 flutter 之间高速传输数据</description>
+    </item>
+    
     <item>
       <title>MacOS 使用 Repo 下载 Android 源码</title>
       <link>https://wild-coffee.github.io/blog/post/macos-%E4%BD%BF%E7%94%A8-repo-%E4%B8%8B%E8%BD%BD-android-%E6%BA%90%E7%A0%81/</link>
