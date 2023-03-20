@@ -5,7 +5,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Flutter 修改应用程序名字和图标</title>
+        <title>MacOS 使用 Repo 下载 Android 源码</title>
         
             <link rel="icon" href="https://wild-coffee.github.io/blog/favicon.ico">
         
@@ -87,7 +87,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">Flutter 修改应用程序名字和图标</a>
+                    <a class="navbar-brand visible-xs" href="#">MacOS 使用 Repo 下载 Android 源码</a>
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -135,35 +135,23 @@
 <main>
 
     <div>
-        <h2>Flutter 修改应用程序名字和图标</h2>
-        <h5>June 20, 2022</h5>
+        <h2>MacOS 使用 Repo 下载 Android 源码</h2>
+        <h5>December 22, 2022</h5>
         
 
     </div>
 
     <div align="start" class="content"><hr>
-<p>应用程序名字和图标，即安装后在手机桌面上显示的图标和名字。在 flutter 中，修改名字和图标并不是一个地方统一修改，而是各平台单独修改</p>
-<h3 id="android">Android</h3>
-<ul>
-<li>
-<p>名字：修改 android/app/src/main/AndroidManifest.xml，manifest &gt; application &gt; android:label</p>
-</li>
-<li>
-<p>图标：修改 android/app/src/main/AndroidManifest.xml，manifest &gt; application &gt; android:icon</p>
-<p>需提前添加图片到 android/app/src/main/res/mipmap-*dpi</p>
-</li>
-</ul>
-<h3 id="ios">iOS</h3>
-<ul>
-<li>
-<p>名字：修改 ios/Runner/Info.plist，CFBundleName</p>
-</li>
-<li>
-<p>图标：修改 ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json</p>
-<p>需提前添加图片到 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-<em>x</em>@*x.png</p>
-</li>
-</ul>
-<p>实际开发中，更习惯于直接把 Android/iOS 中的文件直接替换，简单又直接！</p>
+<h3 id="使用-brew-安装-repo">使用 brew 安装 repo</h3>
+<pre tabindex="0"><code>brew install repo
+repo --version
+</code></pre><h3 id="下载-android-源码以-android-22-froyo-为例">下载 Android 源码（以 Android 2.2 froyo 为例）</h3>
+<pre tabindex="0"><code>mkdir android_froyo
+cd android_froyo
+repo init -u git://mirrors.ustc.edu.cn/aosp/platform/manifest -b froyo
+repo sync
+</code></pre><h3 id="参考资料">参考资料</h3>
+<p>Android 源代码标记和细分版本: <a href="https://source.android.com/source/build-numbers.html#source-code-tags-and-builds">https://source.android.com/source/build-numbers.html#source-code-tags-and-builds</a></p>
 </div>
 
     

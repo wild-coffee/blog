@@ -6,7 +6,16 @@
     <description>Recent content on wild-coffee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wild-coffee.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MacOS 使用 Repo 下载 Android 源码</title>
+      <link>https://wild-coffee.github.io/blog/post/macos-%E4%BD%BF%E7%94%A8-repo-%E4%B8%8B%E8%BD%BD-android-%E6%BA%90%E7%A0%81/</link>
+      <pubDate>Thu, 22 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wild-coffee.github.io/blog/post/macos-%E4%BD%BF%E7%94%A8-repo-%E4%B8%8B%E8%BD%BD-android-%E6%BA%90%E7%A0%81/</guid>
+      <description>使用 brew 安装 repo brew install repo repo --version 下载 Android 源码（以 Android 2.2 froyo 为例） mkdir android_froyo cd android_froyo repo init -u git://mirrors.ustc.edu.cn/aosp/platform/manifest -b froyo repo sync 参考资料 Android 源代码标记和细分版本: https://source.android.com/source/build-numbers.html#source-code-tags-and-builds</description>
+    </item>
+    
     <item>
       <title>JNI C&#43;&#43; 回调 JAVA 函数</title>
       <link>https://wild-coffee.github.io/blog/post/jni-c&#43;&#43;-%E5%9B%9E%E8%B0%83-java-%E5%87%BD%E6%95%B0/</link>
@@ -341,7 +350,8 @@ Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中�
       <pubDate>Thu, 16 Jun 2022 16:50:19 +0800</pubDate>
       
       <guid>https://wild-coffee.github.io/blog/dart/</guid>
-      <description>[2022-12-05] JNI C++ 回调 JAVA 函数
+      <description>[2022-12-22] MacOS 使用 Repo 下载 Android 源码
+[2022-12-05] JNI C++ 回调 JAVA 函数
 [2022-11-08] 使用 MediaPipe Android AAR 构建 Android 应用
 [2022-10-19] Flutter Android 使用启动 Splash 页面防止启动白屏
 [2022-10-11] 使用 fataar 给 aar 嵌入第三方库
@@ -351,9 +361,7 @@ Publish文件: Publish.pubxml 中，在标签 &amp;lt;PropertyGroup&amp;gt; 中�
 [2022-06-20] flutter 插件之 pigeon - 与宿主平台通信
 [2022-06-20] flutter 插件之 path_provider - 获取常用目录位置
 [2022-06-20] flutter 插件之 flutter_tts - 合成声音
-[2022-06-20] 预览所有 MaterialApp Icon
-[2022-06-20] Flutter 修改应用程序名字和图标
-[2022-06-20] 使用 FVM 管理多个版本的 Flutter</description>
+[2022-06-20] 预览所有 MaterialApp Icon</description>
     </item>
     
     <item>
